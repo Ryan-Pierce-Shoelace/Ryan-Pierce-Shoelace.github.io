@@ -1,0 +1,26 @@
+ryan:
+  name: "Ryan Pierce"
+  bio: "An indie game developer."
+  location: "Toronto, Canada"
+  avatar: "/assets/images/bio-photo.jpg"
+  github: "https://github.com/Ryan-Pierce-Shoelace"
+  itchio: "https://shoelace.itch.io/"
+  twitter: "https://twitter.com/"
+  youtube: "https://www.youtube.com/"
+  twitch: "https://www.twitch.tv/"
+  skills:
+    - "Unity & Unreal Engine"
+    - "C# & C++"
+    - "3D Modeling & Animation"
+    - "Version Control (Git)"
+  experience:
+    - title: "Senior Game Developer at [Company Name] - [Location]"
+      period: "January 2020 - Present"
+      description: "Responsibilities and achievements"
+    - title: "Game Developer at [Company Name] - [Location]"
+      period: "June 2018 - December 2019"
+      description: "Responsibilities and achievements"
+  education:
+    - degree: "BSc in Computer Science"
+      institution: "NAIT"
+      period: "September 2014 - June 2018"

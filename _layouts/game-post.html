@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page.title | default: site.title }}</title>
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <script src="/assets/js/navbar.js"></script>
+</head>
+
+<body>
+    <nav class="nav-container post-navbar" role="navigation">
+        {% include navbar.html %}
+    </nav>
+
+    <main class="post" role="main">
+        <header class="post-header">
+            <h1 class="post-title">{{ page.title }}</h1>
+            <p>Released: {{ page.date | date: "%b %d %Y" }}</p>
+            <div class="post-hero-container">
+                <img src="{{ site.url }}{{ page.main_image }}" alt="{{ page.title }}" />
+            </div>
+            <h3 class="post-description">{{ page.description }}</h3>
+        </header>
+
+        <article>
+            <div class="post-content">{{ content }}</div>
+        </article>
+
+        <div class="game-page-button-container">
+            <a href="{{ page.game_page_url }}" class="game-page-button" target="_blank" rel="noopener noreferrer">More
+                About This Game</a>
+        </div>
+
+        <div class="image-gallery">
+            {% for image in page.gallery_images %}
+            <div class="image-gallery-item">
+                <img src="{{ image }}" alt="Gallery image" />
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer class="site-footer">{% include footer.html %}</footer>
+</body>
+
+</html>

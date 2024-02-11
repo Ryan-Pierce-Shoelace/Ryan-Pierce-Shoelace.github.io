@@ -1,0 +1,47 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page.title | default: site.title }}</title>
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <script src="/assets/js/navbar.js"></script>
+</head>
+
+<body>
+    <nav class="nav-container post-navbar" role="navigation">
+        {% include navbar.html %}
+    </nav>
+
+    <div class="container">
+        <aside class="left-column">
+            {% include bio_card.html
+            name= site.data.contact.ryan.name
+            bio=site.data.contact.ryan.bio
+            location=site.data.contact.ryan.location
+            avatar=site.data.contact.ryan.avatar
+            github=site.data.contact.ryan.github
+            itchio=site.data.contact.ryan.itchio
+            twitter=site.data.contact.ryan.twitter
+            youtube=site.data.contact.ryan.youtube
+            twitch=site.data.contact.ryan.twitch
+            %}
+        </aside>
+
+        <main class="right-column">
+            <section class="about-section" aria-labelledby="about-me-heading">
+                <h2 id="about-me-heading">About Me</h2>
+                <p>Although relatively new to the game development scene, I have always been an avid gamer. My favorites
+                    being those with rich stories and atmosphere such as Rockstar’s Red Dead Redemption, Bethesda’s
+                    Skyrim, Blizzard’s Overwatch, and Galactic Cafe’s The Stanley Parable. Playing games like these
+                    showed me the importance of game polish and how it defines a player’s experience with a game.</p>
+            </section>
+            <section class="cv-info" aria-labelledby="cv-info-heading">
+                <h2 class="cv-info-heading">Professional Profile</h2>
+                {% include cv_info.html contact=site.data.contact.ryan %}
+            </section>
+
+        </main>
+    </div>
+    <footer class="site-footer">{% include footer.html %}</footer>
+
+</body>
