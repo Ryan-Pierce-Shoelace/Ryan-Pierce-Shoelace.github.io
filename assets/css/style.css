@@ -9,11 +9,11 @@
     --body-gradient-end: #484848;
 
     --text-color: #ccc;
-    --text-accent-color: red;
+    --text-accent-color: rgb(245, 100, 32);
     --text-color-hover: #aaa;
 
     --nav-dropdown-bg: #16222a;
-    --nav-highlight-color: red;
+    --nav-highlight-color: rgb(245,100,32);
     --nav-highlight-text: white;
 
     /* --nav-hover-color: #ddd;
