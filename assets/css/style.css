@@ -1,29 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
 :root {
-    /* --nav-bg-color: #1a1a2e; 
-    --nav-text-color: #e7e7e7; 
-    --nav-highlight-color: ; */
+    --color-primary: #ffffff;
+    --color-primary-hover: #f0f0f0;
+
+    --color-secondary: #000000;
+    --color-secondary-hover: #333333;
+
+    --color-accent: rgb(245, 100, 32);
+    --color-accent-hover: rgb(220, 90, 30);
 
     --body-gradient-start: #16222a;
     --body-gradient-end: #484848;
 
-    --text-color: #ccc;
-    --text-accent-color: rgb(245, 100, 32);
-    --text-color-hover: #aaa;
-
     --nav-dropdown-bg: #16222a;
-    --nav-highlight-color: rgb(245,100,32);
-    --nav-highlight-text: white;
 
-    /* --nav-hover-color: #ddd;
-    --nav-link-color: #222;
-
-    --nav-dropdown-hover-bg: rgb(52, 147, 224);
-    --nav-dropdown-text: #fff;
-    --nav-dropdown-hover-text: rgb(199, 224, 245);
-    --nav-toggle-bar-color: #000;
-    --nav-toggle-bar-hover-color: var(--navbar-text-color-focus);  */
+    --font-family-base: "Roboto", Arial, sans-serif;
 }
 
 /* reset */
@@ -34,7 +26,7 @@
 
 html {
     box-sizing: border-box;
-    font-family: "Roboto", Arial, sans-serif;
+    font-family: var(--font-family-base);
     height: 100%;
     margin: 0;
 }
@@ -45,7 +37,7 @@ body {
     height: 100%;
     margin: 0;
     background: linear-gradient(90deg, var(--body-gradient-start), var(--body-gradient-end));
-    color: var(--text-color);
+    color: var(--color-primary);
 }
 
 main {
@@ -71,7 +63,7 @@ main {
 
 .branding h1 {
     font-size: 2rem;
-    color: var(--text-color);
+    color: var(--color-primary);
     padding-left: 1rem;
     margin: 0;
 }
@@ -106,17 +98,17 @@ main {
     white-space: nowrap;
     padding: 1rem;
     font-size: 1rem;
-    color: var(--text-accent-color);
+    color: var(--color-accent);
 }
 
 .nav-menu li a {
     font-size: 1rem;
-    color: var(--text-accent-color);
+    color: var(--color-accent);
     text-decoration: none;
 }
 
 .nav-menu li a:hover {
-    color: var(--text-color-hover);
+    color: var(--color-primary-hover);
 }
 
 /* Dropdown */
@@ -138,7 +130,7 @@ main {
     transition: all 0.4s ease;
 }
 
-.nav-menu .dropdown:hover > ul {
+.nav-menu .dropdown:hover>ul {
     top: 100%;
     left: 0;
     opacity: 1;
@@ -154,22 +146,22 @@ main {
 }
 
 .nav-menu .dropdown ul li:hover {
-    background-color: var(--nav-highlight-color);
+    background-color: var(--color-accent);
 }
 
 .nav-menu .dropdown ul li:hover a {
-    color: var(--nav-highlight-text);
+    color: var(--color-primary);
 }
 
 .nav-menu .dropdown ul li a {
     display: block;
-    color: var(--text-color);
+    color: var(--color-primary);
     text-transform: capitalize;
 }
 
 .nav-menu .dropdown ul li a:hover {
     display: block;
-    color: var(--nav-highlight-text);
+    color: var(--color-primary);
 }
 
 /* arrow for dropdown */
@@ -179,7 +171,7 @@ main {
     font-weight: 900;
     font-size: 0.875rem;
     padding-left: 5px;
-    color: var(--text-color);
+    color: var(--color-primary);
 }
 
 .nav-menu .dropdown:hover:after {
@@ -188,7 +180,7 @@ main {
     font-weight: 900;
     font-size: 0.875rem;
     padding-left: 5px;
-    color: var(--text-color-hover);
+    color: var(--color-primary-hover);
 }
 
 /* Hero */
@@ -206,7 +198,7 @@ main {
 }
 
 .hero-text {
-    color: #ddd;
+    color: var(--color-primary);
     text-align: center;
 }
 
@@ -230,7 +222,7 @@ main {
     margin: 0 auto;
     padding: 20px;
     line-height: 1.6;
-    font-family: "Roboto", sans-serif;
+    font-family: var(--font-family-base);
 }
 
 .post-title {
@@ -271,7 +263,7 @@ main {
 .game-page-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #ff0000;
+    background-color: var(--color-accent);
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -283,7 +275,7 @@ main {
 
 .game-page-button:hover,
 .game-page-button:focus {
-    background-color: #cc0000;
+    background-color: var(--color-accent-hover);
     outline: none;
 }
 
@@ -315,56 +307,65 @@ main {
     margin: 0 auto;
     padding: 20px;
     line-height: 1.6;
-    font-family: "Roboto", sans-serif;
+    font-family: var(--font-family-base);
 }
 
-.left-column, .right-column {
+.left-column,
+.right-column {
     padding: 20px;
 }
 
-.skills-list{
-    list-style-position: inside; 
+.skills-list {
+    list-style-position: inside;
     padding-left: 0;
 }
 
-.skills-list li, .experience-list li, .education-list li {
+.skills-list li,
+.experience-list li,
+.education-list li {
     margin-left: 20px;
 }
 
-.cv-info-heading {
-    text-align: center;
-}
 
-.experience-list li i, .education-list li i {
+
+.experience-list li i,
+.education-list li i {
     margin-left: 20px;
     margin-bottom: 10px;
 }
 
 
-.experience-list li p, .education-list li p {
+.experience-list li p,
+.education-list li p {
     margin-left: 40px;
 }
 
-.experience-list li h4, .education-list li h4 {
+.experience-list li h4,
+.education-list li h4 {
     margin-bottom: 5px;
 }
 
 
-#skills, #experience, #education {
+#skills,
+#experience,
+#education {
     margin-bottom: 20px;
 }
 
-#experience li, #education li {
+#experience li,
+#education li {
     margin-bottom: 15px;
 }
 
-#skills h3, #experience h3, #education h3 {
+#skills h3,
+#experience h3,
+#education h3 {
     margin-bottom: 10px;
 }
 
 /* Bio Card Styles */
 .left-column {
-    flex: 1 1 300px; 
+    flex: 1 1 300px;
     margin-right: 20px;
 }
 
@@ -372,7 +373,8 @@ main {
     flex: 3 1 600px;
 }
 
-.about-section, .cv-info {
+.about-section,
+.cv-info {
     margin-bottom: 20px;
 }
 
@@ -381,11 +383,11 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f9f9f988;
+    background-color: var(--nav-dropdown-bg);
     border-radius: 10px;
     padding: 20px;
     max-width: 300px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 20px auto;
 }
 
@@ -409,13 +411,12 @@ main {
     margin-top: 10px;
     font-size: 1.5rem;
     font-weight: bold;
-    color: #111;
+
 }
 
 .bio-description {
     font-style: italic;
     margin: 10px 0;
-    color: #333;
 }
 
 .bio-divider {
@@ -443,12 +444,12 @@ main {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: #111;
+    color: var(--color-primary);
     font-weight: 500;
 }
 
 .bio-links a:hover {
-    color: var(--text-accent-color);
+    color: var(--color-accent);
 }
 
 .bio-links i {
@@ -462,7 +463,6 @@ main {
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background-color: var(--footer-bg-color);
 }
 
 .footer-links {
@@ -478,7 +478,7 @@ main {
 }
 
 .footer-links li a {
-    color: var(--link-color);
+    color: var(--color-primary);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -489,13 +489,9 @@ main {
 }
 
 .footer-links li a:hover {
-    color: var(--link-hover-color);
+    color: var(--color-accent);
 }
 
-.footer-links li a:focus {
-    outline: 2px solid var(--link-focus-outline-color);
-    outline-offset: 2px;
-}
 
 @media (max-width: 768px) {
     .nav-container {
