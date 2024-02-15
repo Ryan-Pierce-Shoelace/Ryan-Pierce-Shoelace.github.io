@@ -3,12 +3,12 @@ layout: game-post
 title:   "Factual Front"
 description:  "A game about journalism"
 date:   2024-01-25
-main_image: /assets/images/FactualFront/main.png
+main_image: /assets/images/FactualFront/main.webp
 game_page_url: "https://shoelace.itch.io/factual-front"
 gallery_images:
-  - /assets/images/FactualFront/1.png
-  - /assets/images/FactualFront/2.png
-  - /assets/images/FactualFront/3.png
+  - /assets/images/FactualFront/1.webp
+  - /assets/images/FactualFront/2.webp
+  - /assets/images/FactualFront/3.webp
 
 ---
 
