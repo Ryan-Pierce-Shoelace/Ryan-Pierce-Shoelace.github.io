@@ -28,14 +28,24 @@
 </button>
 <ul class="nav-menu">
     <li><a href="/">Home</a></li>
-    <li class="dropdown">Games</a>
+    <li class="dropdown">
+        <a href="#" aria-haspopup="true" aria-expanded="false">Games <svg class="dropdown-chevron"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M16.293 9.293L12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path>
+            </svg></a>
+
         <ul>
             {% for game in site.games reversed %}
             <li><a href="{{ game.url }}">{{ game.title }}</a></li>
             {% endfor %}
         </ul>
     </li>
-    <li class="dropdown">Blog</a>
+    <li class="dropdown">
+        <a href="#" aria-haspopup="true" aria-expanded="false">Blog <svg class="dropdown-chevron"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M16.293 9.293L12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path>
+            </svg></a>
+
         <ul>
             {% for post in site.posts reversed %}
             <li><a href="{{ post.url }}">{{ post.title }}</a></li>

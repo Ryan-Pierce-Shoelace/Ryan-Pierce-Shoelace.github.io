@@ -90,6 +90,7 @@ main {
     flex-direction: row;
     max-height: 100%;
     overflow: visible;
+    align-items: baseline;
 }
 
 .nav-menu li {
@@ -116,6 +117,25 @@ main {
     position: relative;
     z-index: 100;
 }
+
+.nav-menu .dropdown>a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-menu .dropdown-chevron {
+    transition: transform 0.3s ease;
+    width: 19px;
+    height: auto;
+    margin-left: 8px;
+    fill: currentColor;
+    /* Align chevron with the text's baseline or bottom */
+    align-self: flex-end;
+    margin-bottom: -2px;
+    /* Adjust this value as needed */
+}
+
 
 .nav-menu .dropdown ul {
     display: flex;
@@ -149,6 +169,14 @@ main {
     background-color: var(--color-accent);
 }
 
+.nav-menu li a {
+    display: block;
+    width: 100%;
+
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
 .nav-menu .dropdown ul li:hover a {
     color: var(--color-primary);
 }
@@ -165,23 +193,10 @@ main {
 }
 
 /* arrow for dropdown */
-.nav-menu .dropdown:after {
-    content: "\f107";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 0.875rem;
-    padding-left: 5px;
-    color: var(--color-primary);
+.nav-menu .dropdown:hover .dropdown-chevron {
+    transform: rotate(180deg);
 }
 
-.nav-menu .dropdown:hover:after {
-    content: "\f106";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 0.875rem;
-    padding-left: 5px;
-    color: var(--color-primary-hover);
-}
 
 /* Hero */
 
