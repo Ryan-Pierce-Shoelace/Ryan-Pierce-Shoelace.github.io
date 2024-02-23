@@ -3,7 +3,7 @@ layout: game-post
 title:  "Martial Math"
 description:  "Learning made fun"
 date:   2018-12-01
-main_image: /assets/images/MartialMath/main.jpg
+main_image: /assets/images/MartialMath/main.webp
 game_page_url: "https://shoelace.itch.io/martial-math"
 
 ---
