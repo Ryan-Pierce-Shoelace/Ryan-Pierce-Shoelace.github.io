@@ -1,0 +1,134 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout title={frontmatter.title}>
+    <article class="game-post">
+        <header class="post-header">
+            <h1>{frontmatter.title}</h1>
+            <time>Released: {new Date(frontmatter.date).toLocaleDateString()}</time>
+        </header>
+
+        <div class="hero-image">
+            <img src={frontmatter.main_image} alt={frontmatter.title} />
+        </div>
+
+        <h2 class="game-description">{frontmatter.description}</h2>
+
+        <div class="post-content">
+            <slot />
+        </div>
+
+        {frontmatter.game_page_url && (
+                <div class="cta-button">
+                    <a href={frontmatter.game_page_url} target="_blank" rel="noopener noreferrer" class="game-link">
+                        More About This Game
+                    </a>
+                </div>
+        )}
+
+        {frontmatter.gallery_images && (
+                <div class="game-gallery">
+                    {frontmatter.gallery_images.map((image) => (
+                            <img src={image} alt="Game screenshot" loading="lazy" />
+                    ))}
+                </div>
+        )}
+    </article>
+</BaseLayout>
+
+<style>
+    .game-post {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 80px 20px 40px;
+        color: white;
+    }
+
+    .post-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .post-header h1 {
+        font-size: 2.5rem;
+        margin: 0;
+        color: rgb(245, 100, 32);
+    }
+
+    .post-header time {
+        display: block;
+        margin-top: 0.5rem;
+        color: #aaa;
+    }
+
+    .hero-image {
+        width: 100%;
+        margin: 2rem 0;
+    }
+
+    .hero-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .game-description {
+        font-size: 1.5rem;
+        color: rgb(245, 100, 32);
+        margin-bottom: 2rem;
+    }
+
+    .post-content {
+        line-height: 1.6;
+        margin-bottom: 2rem;
+    }
+
+    .cta-button {
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    .game-link {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background-color: rgb(245, 100, 32);
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    .game-link:hover {
+        background-color: rgb(220, 90, 30);
+    }
+
+    .game-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .game-gallery img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+    }
+
+    @media (max-width: 768px) {
+        .game-post {
+            padding: 60px 15px 30px;
+        }
+
+        .post-header h1 {
+            font-size: 2rem;
+        }
+
+        .game-description {
+            font-size: 1.2rem;
+        }
+    }
+</style>

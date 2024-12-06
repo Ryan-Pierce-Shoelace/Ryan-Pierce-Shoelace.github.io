@@ -1,0 +1,102 @@
+---
+const { member } = Astro.props;
+---
+
+<div class="bio-left-section">
+    <img
+            src={member.data.avatar}
+            alt={`${member.data.name}'s profile`}
+            class="profile-image"
+    />
+    <h2>{member.data.name}</h2>
+    <p class="role">{member.data.role}</p>
+    <hr class="divider" />
+    <div class="social-links">
+        {member.data.links?.github && (
+                <a href={member.data.links.github} class="social-link">
+                    <img src="/assets/icons/github.svg" alt="GitHub" /> GitHub
+                </a>
+        )}
+        {member.data.links?.itchio && (
+                <a href={member.data.links.itchio} class="social-link">
+                    <img src="/assets/icons/itch.svg" alt="Itch.io" /> Itch.io
+                </a>
+        )}
+        {member.data.links?.twitter && (
+                <a href={member.data.links.twitter} class="social-link">
+                    <img src="/assets/icons/twitter.svg" alt="Twitter" /> Twitter
+                </a>
+        )}
+        {member.data.links?.youtube && (
+                <a href={member.data.links.youtube} class="social-link">
+                    <img src="/assets/icons/youtube.svg" alt="YouTube" /> YouTube
+                </a>
+        )}
+        {member.data.links?.twitch && (
+                <a href={member.data.links.twitch} class="social-link">
+                    <img src="/assets/icons/twitch.svg" alt="Twitch" /> Twitch
+                </a>
+        )}
+    </div>
+</div>
+
+<style>
+    .bio-left-section {
+        background: rgba(22, 34, 42, 0.95);
+        padding: 2rem;
+        border-radius: 8px;
+        text-align: center;
+        width: 300px;
+    }
+
+    .profile-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        object-fit: cover;
+    }
+
+    h2 {
+        color: white;
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+    .role {
+        color: rgb(245, 100, 32);
+        font-style: italic;
+        margin: 0.5rem 0;
+    }
+
+    .divider {
+        border: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 1rem 0;
+    }
+
+    .social-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+
+    .social-link {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .social-link:hover {
+        color: rgb(245, 100, 32);
+    }
+
+    .social-link img {
+        width: 20px;
+        height: 20px;
+    }
+</style>

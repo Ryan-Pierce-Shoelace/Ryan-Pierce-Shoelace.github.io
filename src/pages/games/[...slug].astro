@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+
+// This generates all the game pages
+export async function getStaticPaths() {
+    const games = await getCollection('games');
+    return games.map(game => ({
+        params: { slug: game.slug },
+        props: { game }
+    }));
+}
+
+const { game } = Astro.props;
+const { Content } = await game.render();
+---
+
+<article>
+    <h1>{game.data.title}</h1>
+    <img src={game.data.main_image} alt={game.data.title} />
+    <Content />
+</article>
