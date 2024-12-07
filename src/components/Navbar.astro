@@ -1,19 +1,32 @@
 ---
-import { getCollection } from 'astro:content';
+import {getCollection} from 'astro:content';
 
 const games = await getCollection('games');
 const posts = await getCollection('blog');
+const tutorials = await getCollection('tutorials');
 
 const sortedGames = [...games].sort((a, b) =>
     b.data.date.getTime() - a.data.date.getTime()
 );
+
+const sortedPosts = [...posts].sort((a, b) =>
+    b.data.date.getTime() - a.data.date.getTime()
+);
+
+const sortedTutorials = [...tutorials].sort((a, b) =>
+    b.data.date.getTime() - a.data.date.getTime()
+);
+
+
+const videoTutorials = sortedTutorials.filter(tutorial => tutorial.data.type === 'video');
+const writtenTutorials = sortedTutorials.filter(tutorial => tutorial.data.type === 'written');
 ---
 
 <nav class="navbar">
     <div class="nav-content">
         <div class="nav-brand">
             <a href="/" class="brand-link">
-                <img src="/assets/icons/logo.svg" alt="Shoelace Studios Logo" class="brand-logo" />
+                <img src="/assets/icons/logo.svg" alt="Shoelace Studios Logo" class="brand-logo"/>
                 <span class="brand-text">Shoelace Studios</span>
             </a>
         </div>
@@ -37,13 +50,16 @@ const sortedGames = [...games].sort((a, b) =>
             <div class="dropdown">
                 <button class="dropdown-btn">Blog</button>
                 <div class="dropdown-content">
-                    {posts.map(post => (
+                    <a href="/blog" class="section-header">All Posts</a>
+                    {sortedPosts.map(post => (
                             <a href={`/blog/${post.slug}`}>{post.data.title}</a>
                     ))}
                 </div>
             </div>
 
-            <a href="about" class="nav-link">About</a>
+            <a href="/tutorials" class="nav-link">Tutorials</a>
+
+            <a href="/about" class="nav-link">About</a>
         </div>
     </div>
 </nav>
@@ -119,7 +135,7 @@ const sortedGames = [...games].sort((a, b) =>
         right: 0;
         background: rgba(22, 34, 42, 0.95);
         min-width: 200px;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         border-radius: 4px;
         overflow: hidden;
     }
@@ -189,8 +205,56 @@ const sortedGames = [...games].sort((a, b) =>
             box-shadow: none;
         }
     }
-</style>
 
+    .dropdown-content .section-header {
+        background: rgba(245, 100, 32, 0.1);
+        font-weight: 500;
+        color: rgb(245, 100, 32);
+    }
+
+    .dropdown-section {
+        padding: 0.5rem 0;
+    }
+
+    .dropdown-section:not(:last-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .section-label {
+        display: block;
+        padding: 0.5rem 1rem;
+        color: rgb(209, 213, 219);
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    /* Update dropdown content max-height and add scrolling for long lists */
+    .dropdown-content {
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: rgb(245, 100, 32) rgba(22, 34, 42, 0.95);
+    }
+
+    .dropdown-content::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .dropdown-content::-webkit-scrollbar-track {
+        background: rgba(22, 34, 42, 0.95);
+    }
+
+    .dropdown-content::-webkit-scrollbar-thumb {
+        background-color: rgb(245, 100, 32);
+        border-radius: 3px;
+    }
+
+    @media (max-width: 768px) {
+        .dropdown-section {
+            padding-left: 1rem;
+        }
+    }
+</style>
 <script>
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');

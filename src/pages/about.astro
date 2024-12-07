@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ProfileCard from '../components/ProfileCard.astro';
 import { getCollection } from 'astro:content';
 
 const teamMembers = await getCollection('team');
@@ -12,78 +13,7 @@ const sortedTeam = [...teamMembers].sort((a, b) =>
     <div class="about-container">
         <section class="team-cards">
             {sortedTeam.map(member => (
-                    <div class="profile-card">
-                        <div class="card-left">
-                            <img
-                                    src={member.data.avatar}
-                                    alt={member.data.name}
-                                    class="profile-image"
-                            />
-                            <h2>{member.data.name}</h2>
-                            <p class="role">{member.data.role}</p>
-                            <hr />
-                            <div class="social-links">
-                                {member.data.links?.github && (
-                                        <a href={member.data.links.github} target="_blank" rel="noopener">
-                                            <img src="/assets/icons/github.svg" alt="GitHub" class="social-icon" />
-                                            GitHub
-                                        </a>
-                                )}
-                                {member.data.links?.itchio && (
-                                        <a href={member.data.links.itchio} target="_blank" rel="noopener">
-                                            <img src="/assets/icons/itch.svg" alt="Itch.io" class="social-icon" />
-                                            Itch.io
-                                        </a>
-                                )}
-                                {member.data.links?.twitter && (
-                                        <a href={member.data.links.twitter} target="_blank" rel="noopener">
-                                            <img src="/assets/icons/twitter.svg" alt="Twitter" class="social-icon" />
-                                            Twitter
-                                        </a>
-                                )}
-                            </div>
-                        </div>
-                        <div class="card-right">
-                            <section>
-                                <h3>About Me</h3>
-                                <p>{member.data.bio}</p>
-                            </section>
-                            <section>
-                                <h3>Professional Profile</h3>
-                                <div class="skills">
-                                    <h4>Skills</h4>
-                                    <ul>
-                                        {member.data.skills.map(skill => (
-                                                <li>{skill}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                {member.data.experience && (
-                                        <div class="experience">
-                                            <h4>Experience</h4>
-                                            {member.data.experience.map(exp => (
-                                                    <div class="exp-item">
-                                                        <h5>{exp.title} at {exp.company} - {exp.location}</h5>
-                                                        <p class="period">{exp.period}</p>
-                                                        <p>{exp.description}</p>
-                                                    </div>
-                                            ))}
-                                        </div>
-                                )}
-                                {member.data.education && (
-                                        <div class="education">
-                                            <h4>Education</h4>
-                                            {member.data.education.map(edu => (
-                                                    <div class="edu-item">
-                                                        <h5>{edu.degree} - {edu.school}</h5>
-                                                        <p class="period">{edu.period}</p>
-                                                    </div>
-                                            ))}
-                                        </div>
-                                )}
-                            </section>
-                        </div>
-                    </div>
+                    <ProfileCard member={member} />
             ))}
         </section>
     </div>
@@ -92,8 +22,8 @@ const sortedTeam = [...teamMembers].sort((a, b) =>
 <style>
     .about-container {
         max-width: 1200px;
-        margin: 0 auto;
-        padding: 80px 20px;
+        margin: 100px auto 0;
+        padding: 0 20px;
     }
 
     .team-cards {
@@ -102,95 +32,9 @@ const sortedTeam = [...teamMembers].sort((a, b) =>
         gap: 2rem;
     }
 
-    .profile-card {
-        display: grid;
-        grid-template-columns: 300px 1fr;
-        gap: 2rem;
-        background: rgba(22, 34, 42, 0.95);
-        padding: 2rem;
-        border-radius: 8px;
-    }
-
-    .card-left {
-        text-align: center;
-    }
-
-    .profile-image {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        margin-bottom: 1rem;
-    }
-
-    h2 {
-        color: white;
-        margin: 0.5rem 0;
-    }
-
-    .role {
-        color: rgb(245, 100, 32);
-        font-style: italic;
-    }
-
-    hr {
-        border: 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        margin: 1rem 0;
-    }
-
-    .social-links {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .social-links a {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: white;
-        text-decoration: none;
-        padding: 0.5rem;
-        transition: color 0.3s ease;
-    }
-
-    .social-links a:hover {
-        color: rgb(245, 100, 32);
-    }
-
-    .social-icon {
-        width: 20px;
-        height: 20px;
-    }
-
-    .card-right h3 {
-        color: rgb(245, 100, 32);
-        margin-bottom: 1rem;
-    }
-
-    .card-right h4 {
-        color: white;
-        margin: 1rem 0;
-    }
-
-    .card-right section {
-        margin-bottom: 2rem;
-        color: white;
-    }
-
-    .period {
-        color: rgb(245, 100, 32);
-        font-style: italic;
-        margin: 0.25rem 0;
-    }
-
-    .exp-item, .edu-item {
-        margin-bottom: 1.5rem;
-    }
-
     @media (max-width: 768px) {
-        .profile-card {
-            grid-template-columns: 1fr;
+        .about-container {
+            margin-top: 80px;
         }
     }
 </style>
