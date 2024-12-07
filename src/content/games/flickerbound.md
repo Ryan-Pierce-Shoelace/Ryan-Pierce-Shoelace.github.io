@@ -37,6 +37,3 @@ Overall, Flickerbound was a good learning experience, even if its ambitious scop
 - Responsive 3D Platforming: Featuring refined jump and dash mechanics, the platforming felt tight but was sometimes at odds with the forward-facing endless runner camera, which restricted precision.
 - Fully 3D Character with IK: Despite challenges in Blender, the 3D character and its animations turned out to be the most polished aspect of the game, adding an impressive layer of polish and personality.
 - Greek Mythological Aesthetic: The unique visuals brought a mysterious and otherworldly feel to the game. However, the endless runner mechanics sometimes clashed with the thematic depth of the setting.
-
-<!-- Add any additional sections as needed -->
-## Additional Info (Optional)
