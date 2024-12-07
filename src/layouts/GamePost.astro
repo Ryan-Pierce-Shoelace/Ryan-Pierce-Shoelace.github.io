@@ -27,7 +27,7 @@ const getImagePath = (path: string) => {
 
 const getImageExtension = (path: string) => {
     const extension = path.split('.').pop()?.toLowerCase() || 'webp';
-    return ['webp', 'jpg', 'png'].includes(extension) ? extension : 'webp';
+    return ['webp', 'jpg', 'png', 'gif'].includes(extension) ? extension : 'webp';
 };
 ---
 
@@ -99,7 +99,6 @@ const getImageExtension = (path: string) => {
 <style>
     .game-page {
         margin: 0 auto;
-
     }
 
     .main-image {
@@ -188,7 +187,7 @@ const getImageExtension = (path: string) => {
     }
 
     .content-wrapper {
-        max-width: 72rem;
+        max-width: 85rem;
         margin: 0 auto;
         padding: 3rem 1rem;
     }

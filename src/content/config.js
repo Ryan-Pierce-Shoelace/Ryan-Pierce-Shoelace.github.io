@@ -57,4 +57,20 @@ const games = defineCollection({
     })
 });
 
-export const collections = { team, blog, games };
+const tutorials = defineCollection({
+    type: 'content',
+    schema: z.object({
+        title: z.string(),
+        description: z.string(),
+        date: z.date(),
+        author: reference('team'),
+        type: z.enum(['video', 'written']),
+        youtube_id: z.string().optional(),
+        difficulty: z.enum(['Beginner', 'Intermediate', 'Advanced']),
+        prerequisites: z.array(z.string()).optional(),
+        estimated_time: z.number(),
+        thumbnail: z.string().optional()
+    })
+});
+
+export const collections = { team, blog, games, tutorials };

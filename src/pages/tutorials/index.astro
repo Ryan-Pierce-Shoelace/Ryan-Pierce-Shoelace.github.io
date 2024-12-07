@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 
 const tutorials = await getCollection('tutorials');
 
@@ -13,55 +14,66 @@ const writtenTutorials = sortedTutorials.filter(tutorial => tutorial.data.type =
 ---
 
 <BaseLayout title="Tutorials - Shoelace Studios">
-    <div class="tutorials-page">
-        <header class="page-header">
+    <div class="content-wrapper pt-16">
+    <header class="page-header">
             <h1>Tutorials</h1>
-            <p class="description">Learn game development with our comprehensive tutorials</p>
+            <p class="subtitle">Learn game development with our step-by-step guides</p>
         </header>
 
         <div class="tutorials-grid">
-            <section class="tutorial-section">
-                <h2>Video Tutorials</h2>
-                <div class="tutorial-list">
-                    {videoTutorials.map(tutorial => (
-                            <a href={`/tutorials/${tutorial.slug}`} class="tutorial-card">
-                                <div class="card-header">
-                                <span class="difficulty" data-level={tutorial.data.difficulty.toLowerCase()}>
+            {sortedTutorials.map((tutorial) => (
+                    <a href={`/tutorials/${tutorial.slug}`} class="tutorial-card">
+                        <div class="thumbnail-container">
+                            {tutorial.data.thumbnail ? (
+                                    <Image
+                                            src={tutorial.data.thumbnail}
+                                            alt={`Thumbnail for ${tutorial.data.title}`}
+                                            width={640}
+                                            height={360}
+                                            class="thumbnail"
+                                    />
+                            ) : (
+                                    <div class="thumbnail-placeholder">
+                                        <span>No Thumbnail</span>
+                                    </div>
+                            )}
+                            <div class="indicators">
+                                {tutorial.data.type === 'video' && (
+                                        <div class="type-indicator">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="video-icon">
+                                                <path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm14 12l-4-4v4H6v-4l-4 4V6a2 2 0 012-2h12a2 2 0 012 2v10z"/>
+                                            </svg>
+                                            Video
+                                        </div>
+                                )}
+                                <div class="difficulty" data-level={tutorial.data.difficulty.toLowerCase()}>
                                     {tutorial.data.difficulty}
-                                </span>
-                                    <span class="duration">{tutorial.data.estimated_time} min</span>
                                 </div>
-                                <h3>{tutorial.data.title}</h3>
-                                <p>{tutorial.data.description}</p>
-                            </a>
-                    ))}
-                </div>
-            </section>
-
-            <section class="tutorial-section">
-                <h2>Written Tutorials</h2>
-                <div class="tutorial-list">
-                    {writtenTutorials.map(tutorial => (
-                            <a href={`/tutorials/${tutorial.slug}`} class="tutorial-card">
-                                <div class="card-header">
-                                <span class="difficulty" data-level={tutorial.data.difficulty.toLowerCase()}>
-                                    {tutorial.data.difficulty}
-                                </span>
-                                    <span class="duration">{tutorial.data.estimated_time} min</span>
-                                </div>
-                                <h3>{tutorial.data.title}</h3>
-                                <p>{tutorial.data.description}</p>
-                            </a>
-                    ))}
-                </div>
-            </section>
+                            </div>
+                        </div>
+                        <div class="tutorial-content">
+                            <h2>{tutorial.data.title}</h2>
+                            <p>{tutorial.data.description}</p>
+                            <div class="meta">
+                                <span class="time">{tutorial.data.estimated_time} min</span>
+                                <span class="date">
+                                {new Date(tutorial.data.date).toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'short',
+                                    day: 'numeric'
+                                })}
+                            </span>
+                            </div>
+                        </div>
+                    </a>
+            ))}
         </div>
     </div>
 </BaseLayout>
 
 <style>
-    .tutorials-page {
-        max-width: 72rem;
+    .content-wrapper {
+        max-width: 85rem;
         margin: 0 auto;
         padding: 2rem 1rem;
     }
@@ -71,92 +83,140 @@ const writtenTutorials = sortedTutorials.filter(tutorial => tutorial.data.type =
         margin-bottom: 3rem;
     }
 
-    h1 {
+    .page-header h1 {
         font-size: 3rem;
         color: white;
         margin-bottom: 1rem;
     }
 
-    .description {
+    .subtitle {
         color: rgb(209, 213, 219);
         font-size: 1.25rem;
     }
 
-    .tutorial-section {
-        margin-bottom: 3rem;
-    }
-
-    .tutorial-section h2 {
-        color: rgb(245, 100, 32);
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .tutorial-list {
+    .tutorials-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.5rem;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
     }
 
     .tutorial-card {
-        background: rgba(22, 34, 42, 0.95);
+        background-color: rgba(22, 34, 42, 0.95);
         border-radius: 0.5rem;
-        padding: 1.5rem;
+        overflow: hidden;
+        transition: transform 0.3s ease;
         text-decoration: none;
-        transition: transform 0.2s;
     }
 
     .tutorial-card:hover {
         transform: translateY(-4px);
     }
 
-    .card-header {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 1rem;
+    .thumbnail-container {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16/9;
+        background-color: rgba(0, 0, 0, 0.2);
     }
 
+    .thumbnail {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .thumbnail-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(22, 34, 42, 0.95);
+        color: rgb(209, 213, 219);
+    }
+
+    .indicators {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .type-indicator {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        background-color: rgba(59, 130, 246, 0.9);
+        color: white;
+    }
+
+    .video-icon {
+        width: 1rem;
+        height: 1rem;
+    }
+
+
     .difficulty {
+        //position: absolute;
+        top: 1rem;
+        right: 1rem;
         padding: 0.25rem 0.75rem;
         border-radius: 9999px;
         font-size: 0.875rem;
     }
 
     .difficulty[data-level="beginner"] {
-        background-color: rgba(34, 197, 94, 0.2);
-        color: rgb(34, 197, 94);
+        background-color: rgba(34, 197, 94, 0.9);
+        color: white;
     }
 
     .difficulty[data-level="intermediate"] {
-        background-color: rgba(245, 158, 11, 0.2);
-        color: rgb(245, 158, 11);
+        background-color: rgba(245, 158, 11, 0.9);
+        color: white;
     }
 
     .difficulty[data-level="advanced"] {
-        background-color: rgba(239, 68, 68, 0.2);
-        color: rgb(239, 68, 68);
-    }
-
-    .duration {
-        color: rgb(209, 213, 219);
-        font-size: 0.875rem;
-    }
-
-    .tutorial-card h3 {
+        background-color: rgba(239, 68, 68, 0.9);
         color: white;
+    }
+
+    .tutorial-content {
+        padding: 1.5rem;
+    }
+
+    .tutorial-content h2 {
         font-size: 1.25rem;
+        color: white;
         margin-bottom: 0.5rem;
     }
 
-    .tutorial-card p {
+    .tutorial-content p {
         color: rgb(209, 213, 219);
         font-size: 0.875rem;
+        margin-bottom: 1rem;
         line-height: 1.5;
     }
 
-    @media (max-width: 768px) {
-        .tutorial-list {
-            grid-template-columns: 1fr;
+    .meta {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.875rem;
+        color: rgb(209, 213, 219);
+    }
+
+    @media (min-width: 640px) {
+        .tutorials-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .tutorials-grid {
+            grid-template-columns: repeat(3, 1fr);
         }
     }
 </style>

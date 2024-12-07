@@ -21,7 +21,7 @@ const {
 } = entry.data;
 
 const author = await getEntry('team', authorSlug);
-const { Content } = await entry.render();
+const {Content} = await entry.render();
 
 const formattedDate = new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -32,145 +32,196 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
 
 <BaseLayout title={`${title} - Shoelace Studios Tutorials`}>
     <article class="tutorial">
-        <header class="tutorial-header">
-            <div class="tutorial-meta">
-                <div class="difficulty" data-level={difficulty.toLowerCase()}>
-                    {difficulty}
+        <div class="content-wrapper pt-16">
+            <header class="tutorial-header">
+                <h1>{title}</h1>
+                <p class="description">{description}</p>
+
+                <div class="meta-container">
+                    <div class="left-meta">
+                        {author && (
+                                <div class="author-info">
+                                    <img
+                                            src={author.data.avatar}
+                                            alt={author.data.name}
+                                            class="author-avatar"
+                                    />
+                                    <div class="author-details">
+                                        <span class="author-name">{author.data.name}</span>
+                                        <time datetime={date.toISOString()} class="publish-date">{formattedDate}</time>
+                                    </div>
+                                </div>
+                        )}
+                    </div>
+                    <div class="right-meta">
+                        <div class="difficulty" data-level={difficulty.toLowerCase()}>
+                            {difficulty}
+                        </div>
+                        <div class="estimated-time">
+                            {estimated_time} minutes
+                        </div>
+                    </div>
                 </div>
-                <div class="estimated-time">
-                    {estimated_time} minutes
-                </div>
-            </div>
-            <h1>{title}</h1>
-            <p class="description">{description}</p>
-            <div class="author-info">
-                {author && (
-                        <>
-                            <img
-                                    src={author.data.avatar}
-                                    alt={author.data.name}
-                                    class="author-avatar"
-                            />
-                            <div>
-                                <span class="author-name">{author.data.name}</span>
-                                <time datetime={date.toISOString()}>{formattedDate}</time>
-                            </div>
-                        </>
+            </header>
+
+            <div class="tutorial-content">
+                {prerequisites && prerequisites.length > 0 && (
+                        <section class="prerequisites">
+                            <h2>Prerequisites</h2>
+                            <ul>
+                                {prerequisites.map(prereq => (
+                                        <li>{prereq}</li>
+                                ))}
+                            </ul>
+                        </section>
                 )}
-            </div>
-        </header>
 
-        {prerequisites && prerequisites.length > 0 && (
-                <section class="prerequisites">
-                    <h2>Prerequisites</h2>
-                    <ul>
-                        {prerequisites.map(prereq => (
-                                <li>{prereq}</li>
-                        ))}
-                    </ul>
-                </section>
-        )}
+                {type === 'video' && youtube_id && (
+                        <div class="video-container">
+                            <iframe
+                                    src={`https://www.youtube.com/embed/${youtube_id}`}
+                                    title={title}
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen
+                            ></iframe>
+                        </div>
+                )}
 
-        {youtube_id && (
-                <div class="video-container">
-                    <iframe
-                            src={`https://www.youtube.com/embed/${youtube_id}`}
-                            title={title}
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                    ></iframe>
+                <div class="content">
+                    <Content/>
                 </div>
-        )}
-
-        <div class="content">
-            <Content />
+            </div>
         </div>
     </article>
 </BaseLayout>
 
 <style>
     .tutorial {
-        max-width: 65rem;
         margin: 0 auto;
-        padding: 2rem 1rem;
+    }
+
+    .content-wrapper {
+        max-width: 85rem;
+        margin: 0 auto;
+        padding: 5rem 1rem 2rem;
     }
 
     .tutorial-header {
-        max-width: 48rem;
-        margin: 0 auto 2rem;
-    }
-
-    .tutorial-meta {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 1rem;
-    }
-
-    .difficulty {
-        padding: 0.25rem 0.75rem;
-        border-radius: 9999px;
-        font-size: 0.875rem;
-    }
-
-    .difficulty[data-level="beginner"] {
-        background-color: rgba(34, 197, 94, 0.2);
-        color: rgb(34, 197, 94);
-    }
-
-    .difficulty[data-level="intermediate"] {
-        background-color: rgba(245, 158, 11, 0.2);
-        color: rgb(245, 158, 11);
-    }
-
-    .difficulty[data-level="advanced"] {
-        background-color: rgba(239, 68, 68, 0.2);
-        color: rgb(239, 68, 68);
-    }
-
-    .estimated-time {
-        color: rgb(209, 213, 219);
-        font-size: 0.875rem;
-        display: flex;
-        align-items: center;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 2rem;
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     h1 {
-        font-size: 2.5rem;
+        font-size: 3rem;
+        font-weight: 700;
         color: white;
         margin-bottom: 1rem;
+        line-height: 1.2;
     }
 
     .description {
-        color: rgb(209, 213, 219);
         font-size: 1.25rem;
+        color: rgb(209, 213, 219);
         margin-bottom: 1.5rem;
+        line-height: 1.5;
+        max-width: 65ch;
+    }
+
+    .meta-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+
+    .left-meta, .right-meta {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
     }
 
     .author-info {
         display: flex;
         align-items: center;
-        gap: 1rem;
-        color: rgb(209, 213, 219);
+        gap: 1.25rem;
+        padding: 0.75rem 1rem;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 0.75rem;
     }
 
     .author-avatar {
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 3.5rem;
+        height: 3.5rem;
         border-radius: 9999px;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .author-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.375rem;
     }
 
     .author-name {
-        display: block;
         color: white;
+        font-weight: 600;
+        font-size: 1.125rem;
+    }
+
+    .publish-date {
+        color: rgb(156, 163, 175);
+        font-size: 1rem;
+    }
+
+    .difficulty {
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        letter-spacing: 0.025em;
+    }
+
+    .difficulty[data-level="beginner"] {
+        background-color: rgba(34, 197, 94, 0.2);
+        color: rgb(134, 239, 172);
+    }
+
+    .difficulty[data-level="intermediate"] {
+        background-color: rgba(245, 158, 11, 0.2);
+        color: rgb(253, 186, 116);
+    }
+
+    .difficulty[data-level="advanced"] {
+        background-color: rgba(239, 68, 68, 0.2);
+        color: rgb(252, 165, 165);
+    }
+
+    .estimated-time {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: white;
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 9999px;
+    }
+
+    .tutorial-content {
+        max-width: 80%;
+        margin: 0 auto;
     }
 
     .prerequisites {
-        max-width: 48rem;
-        margin: 2rem auto;
         padding: 1.5rem;
         background-color: rgba(22, 34, 42, 0.95);
         border-radius: 0.5rem;
+        margin-bottom: 2rem;
     }
 
     .prerequisites h2 {
@@ -187,9 +238,10 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
 
     .video-container {
         position: relative;
+        width: 100%;
+        height: 0;
         padding-bottom: 56.25%;
         margin: 2rem auto;
-        max-width: 48rem;
     }
 
     .video-container iframe {
@@ -202,8 +254,6 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
     }
 
     .content {
-        max-width: 48rem;
-        margin: 0 auto;
         color: rgb(209, 213, 219);
     }
 
@@ -239,30 +289,53 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
     }
 
     .content :global(a) {
-        color: rgb(245, 100, 32); /* Your site's orange color */
+        color: rgb(245, 100, 32);
         text-decoration: none;
         transition: color 0.2s ease;
     }
 
     .content :global(a:hover) {
-        color: rgb(255, 130, 62); /* Lighter orange for hover */
+        color: rgb(255, 130, 62);
         text-decoration: underline;
     }
 
     .content :global(a:visited) {
-        color: rgb(225, 80, 12); /* Darker orange for visited links */
+        color: rgb(225, 80, 12);
     }
 
     .content :global(a:active) {
-        color: rgb(185, 60, 0); /* Even darker orange when clicked */
+        color: rgb(185, 60, 0);
     }
+
     @media (max-width: 768px) {
         h1 {
             font-size: 2rem;
         }
 
-        .tutorial-meta {
+        .meta-container {
             flex-direction: column;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .right-meta {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+    }
+
+    @media (min-width: 1440px) {
+        .tutorial-header,
+        .prerequisites,
+        .content,
+        .tutorial-content {
+            max-width: 60rem;
+        }
+
+        .video-container {
+            max-height: 600px;
+            padding-bottom: min(56.25%, 600px);
         }
     }
 </style>
