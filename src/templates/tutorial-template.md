@@ -6,6 +6,7 @@ description: "Clear description of what readers will learn in this tutorials"
 date: 2024-02-20
 author: "ryan-pierce"  # This should match the team member's file name without .md
 type: "written"  # Either "written" or "video"
+thumbnail: "/assets/images/tutorials/NAME.jpg"
 youtube_id: "xxxxxx"  # Required if type is "video", remove if written
 difficulty: "Intermediate"  # "Beginner", "Intermediate", or "Advanced"
 prerequisites:  # Optional, remove if none

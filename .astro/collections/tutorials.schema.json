@@ -92,6 +92,9 @@
         "estimated_time": {
           "type": "number"
         },
+        "thumbnail": {
+          "type": "string"
+        },
         "$schema": {
           "type": "string"
         }

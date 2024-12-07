@@ -23,7 +23,7 @@ const writtenTutorials = sortedTutorials.filter(tutorial => tutorial.data.type =
 
         <div class="tutorials-grid">
             {sortedTutorials.map((tutorial) => (
-                    <a href={`/assets/images/tutorials/${tutorial.slug}`} class="tutorial-card">
+                    <a href={`/tutorials/${tutorial.slug}`} class="tutorial-card">
                         <div class="thumbnail-container">
                             {tutorial.data.thumbnail ? (
                                     <Image

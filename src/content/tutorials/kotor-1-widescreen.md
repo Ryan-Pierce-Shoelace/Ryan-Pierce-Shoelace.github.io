@@ -6,6 +6,7 @@ description: "Learn how to get Star Wars: Knights of the Old Republic running in
 date: 2023-12-06
 author: "xuul"
 type: "video"
+thumbnail: "/assets/images/tutorials/kotor-1-widescreen.jpg"
 youtube_id: "DSizFARnwyM" 
 difficulty: "Beginner"  # "Beginner", "Intermediate", or "Advanced"
 prerequisites:  # Optional, remove if none

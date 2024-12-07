@@ -47,15 +47,15 @@ const writtenTutorials = sortedTutorials.filter(tutorial => tutorial.data.type =
                 </div>
             </div>
 
-            <div class="dropdown">
-                <button class="dropdown-btn">Blog</button>
-                <div class="dropdown-content">
-                    <a href="/blog" class="section-header">All Posts</a>
-                    {sortedPosts.map(post => (
-                            <a href={`/blog/${post.slug}`}>{post.data.title}</a>
-                    ))}
-                </div>
-            </div>
+            <!--<div class="dropdown">-->
+            <!--    <button class="dropdown-btn">Blog</button>-->
+            <!--    <div class="dropdown-content">-->
+            <!--        <a href="/blog" class="section-header">All Posts</a>-->
+            <!--        {sortedPosts.map(post => (-->
+            <!--                <a href={`/blog/${post.slug}`}>{post.data.title}</a>-->
+            <!--        ))}-->
+            <!--    </div>-->
+            <!--</div>-->
 
             <a href="/tutorials" class="nav-link">Tutorials</a>
 
