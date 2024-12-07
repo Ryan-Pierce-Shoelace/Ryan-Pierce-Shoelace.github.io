@@ -28,6 +28,9 @@
             "itchio": {
               "type": "string"
             },
+            "bluesky": {
+              "type": "string"
+            },
             "twitter": {
               "type": "string"
             },

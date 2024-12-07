@@ -1,5 +1,4 @@
 ---
-# src/content/games/factual-front.md
 title: "Factual Front"
 description: "A game about journalism"
 date: 2024-01-25

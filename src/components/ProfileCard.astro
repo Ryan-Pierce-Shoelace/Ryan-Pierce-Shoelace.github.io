@@ -31,6 +31,12 @@ const {member} = Astro.props;
                         <span>Twitter</span>
                     </a>
             )}
+            {member.data.links?.bluesky && (
+                    <a href={member.data.links.bluesky} target="_blank" rel="noopener" class="social-link">
+                        <img src="/assets/icons/logo.svg" alt="BlueSky" class="social-icon"/>
+                        <span>Blue Sky</span>
+                    </a>
+            )}
             {member.data.links?.youtube && (
                     <a href={member.data.links.youtube} target="_blank" rel="noopener" class="social-link">
                         <img src="/assets/icons/youtube.svg" alt="YouTube" class="social-icon"/>

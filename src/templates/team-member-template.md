@@ -10,6 +10,7 @@ links:
   github: "https://github.com/username"
   itchio: "https://username.itch.io/"
   twitter: "https://twitter.com/username"
+  bluesky: "https://bsky.app/profile/username.bsky.social"
   youtube: "https://www.youtube.com/@username"
   twitch: "https://www.twitch.tv/username"
 experience:

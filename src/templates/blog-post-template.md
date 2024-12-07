@@ -1,7 +1,6 @@
 ---
 # This is the metadata. It is needed 
 
-
 title: "Your Blog Post Title"
 description: "A compelling description of your post that will appear in previews and at the top of the article"
 date: 2024-02-20

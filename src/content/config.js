@@ -11,6 +11,7 @@ const team = defineCollection({
         links: z.object({
             github: z.string().optional(),
             itchio: z.string().optional(),
+            bluesky: z.string().optional(),
             twitter: z.string().optional(),
             youtube: z.string().optional(),
             twitch: z.string().optional()

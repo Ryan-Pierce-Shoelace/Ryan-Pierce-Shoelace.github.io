@@ -9,9 +9,9 @@ When I’m not coding, I’m probably brainstorming new game ideas, diving into 
 avatar: "/assets/images/team/ryan-pierce/bio-photo.jpg"
 order: 1
 links:
-github: "https://github.com/Ryan-Pierce-Shoelace"
-itchio: "https://shoelace.itch.io/"
-bluesky: "@shoelacegames.bsky.social"
+    github: "https://github.com/Ryan-Pierce-Shoelace"
+    itchio: "https://shoelace.itch.io/"
+    bluesky: "https://bsky.app/profile/shoelacegames.bsky.social"
 experience:
   - title: "Primary Programmer and Unity Developer"
     company: "Mint in Box Games"
