@@ -20,7 +20,12 @@
             <h1 class="post-title">{{ page.title }}</h1>
             <p>Released: {{ page.date | date: "%b %d %Y" }}</p>
             <div class="post-hero-container">
-                <img src="{{ site.url }}{{ page.main_image }}" alt="{{ page.title }}" />
+                <picture>
+                    <source srcset="{{ site.url }}{{ page.main_image }}" type="image/webp">
+                    <source srcset="{{ site.url }}{{ page.main_image | replace: '.webp', '.jpg' }}" type="image/jpeg">
+                    <img src="{{ site.url }}{{ page.main_image | replace: '.webp', '.jpg' }}" alt="{{ page.title }}"
+                        loading="lazy">
+                </picture>
             </div>
             <h3 class="post-description">{{ page.description }}</h3>
         </header>
@@ -34,16 +39,23 @@
                 About This Game</a>
         </div>
 
+        {% if page.gallery_images.size > 0 %}
         <div class="image-gallery">
             {% for image in page.gallery_images %}
             <div class="image-gallery-item">
-                <img src="{{ image }}" alt="Gallery image" />
+                <picture>
+                    <source srcset="{{ site.url }}{{ image }}" type="image/webp">
+                    <source srcset="{{ site.url }}{{ image | replace: '.webp', '.jpg' }}" type="image/jpeg">
+                    <img src="{{ site.url }}{{ image | replace: '.webp', '.jpg' }}"
+                        alt="Gallery image {{ forloop.index }}" loading="lazy">
+                </picture>
             </div>
             {% endfor %}
         </div>
-    </main>
+        {% endif %}
 
-    <footer class="site-footer">{% include footer.html %}</footer>
+
+        <footer class="site-footer">{% include footer.html %}</footer>
 </body>
 
 </html>
