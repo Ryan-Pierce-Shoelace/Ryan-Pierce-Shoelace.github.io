@@ -1,0 +1,318 @@
+---
+const {member} = Astro.props;
+---
+
+<div class="profile-card">
+    <div class="card-left">
+        <img
+                src={member.data.avatar}
+                alt={member.data.name}
+                class="profile-image"
+        />
+        <h2>{member.data.name}</h2>
+        <p class="role">{member.data.role}</p>
+        <hr/>
+        <div class="social-links">
+            {member.data.links?.github && (
+                    <a href={member.data.links.github} target="_blank" rel="noopener" class="social-link">
+                        <img src="/assets/icons/github.svg" alt="GitHub" class="social-icon"/>
+                        <span>GitHub</span>
+                    </a>
+            )}
+            {member.data.links?.itchio && (
+                    <a href={member.data.links.itchio} target="_blank" rel="noopener" class="social-link">
+                        <img src="/assets/icons/itch.svg" alt="Itch.io" class="social-icon"/>
+                        <span>Itch.io</span>
+                    </a>
+            )}
+            {member.data.links?.twitter && (
+                    <a href={member.data.links.twitter} target="_blank" rel="noopener" class="social-link">
+                        <img src="/assets/icons/twitter.svg" alt="Twitter" class="social-icon"/>
+                        <span>Twitter</span>
+                    </a>
+            )}
+            {member.data.links?.youtube && (
+                    <a href={member.data.links.youtube} target="_blank" rel="noopener" class="social-link">
+                        <img src="/assets/icons/youtube.svg" alt="YouTube" class="social-icon"/>
+                        <span>YouTube</span>
+                    </a>
+            )}
+            {member.data.links?.twitch && (
+                    <a href={member.data.links.twitch} target="_blank" rel="noopener" class="social-link">
+                        <img src="/assets/icons/twitch.svg" alt="Twitch" class="social-icon"/>
+                        <span>Twitch</span>
+                    </a>
+            )}
+        </div>
+    </div>
+    <div class="card-right">
+        <section class="about-section">
+            <h3>About Me</h3>
+            <p class="bio-text">{member.data.bio}</p>
+        </section>
+
+        <section class="skills-section">
+            <h3>Skills & Expertise</h3>
+            <div class="skills-grid">
+                {member.data.skills.map(skill => (
+                        <div class="skill-item">
+                            <span class="skill-text">{skill}</span>
+                        </div>
+                ))}
+            </div>
+        </section>
+
+        {member.data.experience && (
+                <section class="experience-section">
+                    <h3>Professional Experience</h3>
+                    <div class="timeline">
+                        {member.data.experience.map(exp => (
+                                <div class="timeline-item">
+                                    <div class="timeline-header">
+                                        <h4>{exp.title}</h4>
+                                        <span class="company">{exp.company}</span>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <span class="period">{exp.period}</span>
+                                        <span class="location">{exp.location}</span>
+                                        <p class="description">{exp.description}</p>
+                                    </div>
+                                </div>
+                        ))}
+                    </div>
+                </section>
+        )}
+
+        {member.data.education && (
+                <section class="education-section">
+                    <h3>Education</h3>
+                    <div class="education-grid">
+                        {member.data.education.map(edu => (
+                                <div class="education-item">
+                                    <h4>{edu.degree}</h4>
+                                    <div class="education-details">
+                                        <span class="school">{edu.school}</span>
+                                        <span class="period">{edu.period}</span>
+                                    </div>
+                                </div>
+                        ))}
+                    </div>
+                </section>
+        )}
+    </div>
+</div>
+
+<style>
+    .profile-card {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 2rem;
+        background: rgba(22, 34, 42, 0.95);
+        padding: 2rem;
+        border-radius: 8px;
+    }
+
+    .card-left {
+        text-align: center;
+    }
+
+    .profile-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        object-fit: cover;
+    }
+
+    h2 {
+        color: white;
+        margin: 0.5rem 0;
+        font-size: 1.5rem;
+    }
+
+    .role {
+        color: rgb(245, 100, 32);
+        font-style: italic;
+        margin: 0.5rem 0;
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 1rem 0;
+    }
+
+    .social-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    .social-link {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .social-link:hover {
+        color: rgb(245, 100, 32);
+    }
+
+    .social-icon {
+        width: 20px;
+        height: 20px;
+        color: rgb(245, 100, 32);
+        object-fit: contain;
+        vertical-align: middle;
+    }
+
+    .card-right h3 {
+        color: rgb(245, 100, 32);
+        margin-bottom: 1rem;
+    }
+
+    .card-right h4 {
+        color: white;
+        margin: 1rem 0;
+    }
+
+    .card-right section {
+        margin-bottom: 2rem;
+        color: white;
+    }
+
+    .period {
+        color: rgb(245, 100, 32);
+        font-style: italic;
+        margin: 0.25rem 0;
+    }
+
+    .exp-item, .edu-item {
+        margin-bottom: 1.5rem;
+    }
+
+    .card-right {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .card-right section {
+        margin-bottom: 0;  /
+        background: rgba(0, 0, 0, 0.2);
+        padding: 1.5rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card-right h3 {
+        color: rgb(245, 100, 32);
+        font-size: 1.5rem;
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid rgb(245, 100, 32);
+    }
+
+    .bio-text {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #fff;
+    }
+
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .skill-item {
+        background: rgba(245, 100, 32, 0.1);
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        border: 1px solid rgba(245, 100, 32, 0.2);
+    }
+
+    .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .timeline-item {
+        position: relative;
+        padding-left: 1.5rem;
+        border-left: 2px solid rgb(245, 100, 32);
+    }
+
+    .timeline-header {
+        margin-bottom: 0.5rem;
+    }
+
+    .timeline-header h4 {
+        color: white;
+        font-size: 1.1rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .company {
+        color: rgb(245, 100, 32);
+        font-weight: 500;
+    }
+
+    .timeline-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .period, .location {
+        color: #a0aec0;
+        font-size: 0.9rem;
+    }
+
+    .description {
+        color: #fff;
+        line-height: 1.5;
+    }
+
+    .education-grid {
+        display: grid;
+        gap: 1.5rem;
+    }
+
+    .education-item {
+        background: rgba(245, 100, 32, 0.1);
+        padding: 1rem;
+        border-radius: 6px;
+        border: 1px solid rgba(245, 100, 32, 0.2);
+    }
+
+    .education-item h4 {
+        color: white;
+        margin-bottom: 0.5rem;
+    }
+
+    .education-details {
+        display: flex;
+        justify-content: space-between;
+        color: #a0aec0;
+    }
+
+    @media (max-width: 768px) {
+        .profile-card {
+            grid-template-columns: 1fr;  /* Add this line */
+        }
+
+        .skills-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .timeline-item {
+            padding-left: 1rem;
+        }
+    }
+</style>

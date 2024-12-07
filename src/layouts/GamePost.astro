@@ -1,0 +1,284 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {Image} from 'astro:assets';
+import type {CollectionEntry} from 'astro:content';
+
+interface Props {
+    entry: CollectionEntry<'games'>;
+}
+
+const {entry} = Astro.props;
+const {title, description, date, main_image, game_page_url, status, gallery_images} = entry.data;
+const {Content} = await entry.render();
+
+const formattedDate = new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+});
+
+const gameSlug = entry.slug || title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+const getImagePath = (path: string) => {
+    if (!path) return '';
+    const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+    return cleanPath.startsWith('assets/') ? `/${cleanPath}` : `/assets/images/games/${gameSlug}/${path}`;
+};
+
+const getImageExtension = (path: string) => {
+    const extension = path.split('.').pop()?.toLowerCase() || 'webp';
+    return ['webp', 'jpg', 'png'].includes(extension) ? extension : 'webp';
+};
+---
+
+<BaseLayout title={`${title} - Shoelace Studios`}>
+    <article class="game-page">
+        <header class="hero-section"
+                style={`background-image: linear-gradient(rgba(22, 34, 42, 0.95), rgba(22, 34, 42, 0.95)), url(${getImagePath(main_image)})`}>
+            <div class="hero-content">
+                <h1>{title}</h1>
+                <p class="tagline">{description}</p>
+                <div class="meta-info">
+                    <time datetime={date.toISOString()} class="release-date">
+                        Released: {formattedDate}
+                    </time>
+                    <span class="status" data-status={status.toLowerCase()}>{status}</span>
+                </div>
+                {game_page_url && (
+                        <a href={game_page_url} class="play-button" target="_blank" rel="noopener noreferrer">
+                            Play Now
+                        </a>
+                )}
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <section class="game-info">
+                <figure class="main-image-container">
+                    <Image
+                            src={getImagePath(main_image)}
+                            alt={`${title} main image`}
+                            width={1200}
+                            height={675}
+                            format={getImageExtension(main_image)}
+                            quality={80}
+                            loading="lazy"
+                            class="main-image"
+                    />
+                </figure>
+                <div class="content">
+                    <Content/>
+                </div>
+            </section>
+
+            {gallery_images && gallery_images.length > 0 && (
+                    <section class="gallery-section" aria-label="Game Screenshots">
+                        <h2>Screenshots</h2>
+                        <div class="gallery-grid">
+                            {gallery_images.map((image, index) => (
+                                    <figure class="gallery-item">
+                                        <Image
+                                                src={getImagePath(image)}
+                                                alt={`${title} screenshot ${index + 1}`}
+                                                width={800}
+                                                height={450}
+                                                format={getImageExtension(image)}
+                                                quality={80}
+                                                loading={index > 0 ? "lazy" : "eager"}
+                                                class="gallery-image"
+                                        />
+                                    </figure>
+                            ))}
+                        </div>
+                    </section>
+            )}
+        </div>
+    </article>
+</BaseLayout>
+
+<style>
+    .game-page {
+        margin: 0 auto;
+
+    }
+
+    .main-image {
+        width: 100%;
+        max-width: 48rem;
+        height: auto;
+        display: block;
+        border-radius: 0.5rem;
+    }
+
+    .gallery-image {
+        width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+        transition: transform 0.3s ease;
+    }
+
+    .hero-section {
+        width: 100%;
+        padding: 4rem 1rem;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .hero-content {
+        max-width: 72rem;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 1rem;
+    }
+
+    .tagline {
+        font-size: 1.25rem;
+        color: rgb(209, 213, 219);
+        margin-bottom: 1.5rem;
+    }
+
+    .meta-info {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        font-size: 1.125rem;
+    }
+
+    .release-date {
+        color: rgb(209, 213, 219);
+    }
+
+    .status {
+        padding: 0.25rem 1rem;
+        border-radius: 9999px;
+    }
+
+    .status[data-status="released"] {
+        background-color: rgb(22, 163, 74);
+        color: white;
+    }
+
+    .status[data-status="in development"] {
+        background-color: rgb(202, 138, 4);
+        color: white;
+    }
+
+    .play-button {
+        display: inline-block;
+        background-color: rgb(245, 100, 32);
+        color: white;
+        padding: 0.75rem 2rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        font-size: 1.125rem;
+        transition: all 0.3s ease;
+    }
+
+    .play-button:hover {
+        background-color: rgb(225, 80, 12);
+        transform: scale(1.05);
+    }
+
+    .content-wrapper {
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 3rem 1rem;
+    }
+
+    .game-info {
+        background-color: rgba(22, 34, 42, 0.95);
+        border-radius: 0.5rem;
+        padding: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .main-image-container {
+        margin: 0 0 2rem 0;
+    }
+
+    .main-image {
+        width: 100%;
+        max-width: 48rem;
+        margin: 0 auto;
+        display: block;
+        border-radius: 0.5rem;
+    }
+
+    .content :global(h2) {
+        color: rgb(245, 100, 32);
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 2rem 0 1rem;
+    }
+
+    .content :global(p) {
+        color: rgb(209, 213, 219);
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+
+    .content :global(ul) {
+        color: rgb(209, 213, 219);
+        margin-bottom: 1rem;
+        line-height: 1.6;
+        margin-left: 1rem;
+    }
+
+    .content :global(ul > li) {
+        position: relative;
+        padding-left: 1.5rem;
+    }
+
+
+    .gallery-section {
+        margin-top: 3rem;
+    }
+
+    .gallery-section h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 1.5rem;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+    }
+
+    .gallery-item {
+        margin: 0;
+    }
+
+    .gallery-image {
+        width: 100%;
+        border-radius: 0.5rem;
+        transition: transform 0.3s ease;
+    }
+
+    .gallery-image:hover {
+        transform: scale(1.02);
+    }
+
+
+    @media (min-width: 768px) {
+        .gallery-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .gallery-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+</style>

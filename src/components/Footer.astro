@@ -1,0 +1,96 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>Shoelace Studios</h4>
+            <p>Coded for form and function.</p>
+        </div>
+        <div class="footer-section">
+            <h4>Follow Us</h4>
+            <div class="social-links">
+                <a href="https://github.com/Ryan-Pierce-Shoelace" target="_blank" rel="noopener">
+                    <img src="/assets/icons/github.svg" alt="GitHub" class="footer-icon" />
+                </a>
+                <a href="https://shoelace.itch.io/" target="_blank" rel="noopener">
+                    <img src="/assets/icons/itch.svg" alt="Itch.io" class="footer-icon" />
+                </a>
+                <a href="https://www.youtube.com/c/xuul" target="_blank" rel="noopener">
+                    <img src="/assets/icons/youtube.svg" alt="YouTube" class="footer-icon" />
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; {currentYear} Travis Pierce. All rights reserved.</p>
+    </div>
+</footer>
+
+<style>
+    .site-footer {
+        background: rgba(22, 34, 42, 0.95);
+        padding: 3rem 0 1.5rem;
+        margin-top: 4rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 4rem;
+    }
+
+    .footer-section h4 {
+        color: rgb(245, 100, 32);
+        margin-bottom: 1rem;
+        font-size: 1.25rem;
+    }
+
+    .footer-section p {
+        color: #a0aec0;
+        line-height: 1.6;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .footer-icon {
+        width: 24px;
+        height: 24px;
+        color: rgb(245, 100, 32);
+        transition: transform 0.2s ease;
+    }
+
+    .social-links a:hover .footer-icon {
+        transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+        max-width: 1200px;
+        margin: 2rem auto 0;
+        padding: 1.5rem 2rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+        color: #a0aec0;
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .social-links {
+            justify-content: center;
+        }
+    }
+</style>

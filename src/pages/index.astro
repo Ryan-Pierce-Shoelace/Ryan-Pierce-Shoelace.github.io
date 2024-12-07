@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Shoelace Studios">
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Shoelace Studios</h1>
+            <p>Coded with form and function</p>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .hero {
+        height: 100vh;
+        position: relative;
+        background-image: url('/assets/images/hero.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+                rgba(22, 34, 42, 0.8),
+                rgba(22, 34, 42, 0.6)
+        );
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        padding: 2rem;
+    }
+
+    .hero h1 {
+        font-size: clamp(3rem, 8vw, 5rem);
+        color: var(--color-accent);
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero p {
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        max-width: 600px;
+        margin: 0 auto;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (max-width: 768px) {
+        .hero-content {
+            padding: 1rem;
+        }
+    }
+</style>

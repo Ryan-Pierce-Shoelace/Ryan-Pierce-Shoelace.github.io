@@ -1,0 +1,230 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
+
+interface Props {
+    entry: CollectionEntry<'blog'>;
+}
+
+const { entry } = Astro.props;
+const { title, date, author: authorRef, description, cover_image, tags } = entry.data;
+const author = await getEntry(authorRef);
+const { Content } = await entry.render();
+
+const formattedDate = new Date(date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+});
+---
+
+<BaseLayout title={`${title} - Shoelace Studios Blog`}>
+    <article class="blog-post">
+        <header class="post-header">
+            <div class="post-header-content">
+                {tags && tags.length > 0 && (
+                        <div class="tags">
+                            {tags.map(tag => (
+                                    <span class="tag">{tag}</span>
+                            ))}
+                        </div>
+                )}
+                <h1>{title}</h1>
+                <p class="description">{description}</p>
+                <div class="meta">
+                    <div class="author">
+                        <img
+                                src={author.avatar}
+                                alt={author.name}
+                                class="author-avatar"
+                        />
+                        <span class="author-name">{author.name}</span>
+                    </div>
+                    <time datetime={date.toISOString()}>{formattedDate}</time>
+                </div>
+            </div>
+        </header>
+
+        {cover_image && (
+                <figure class="cover-image-container">
+                    <img
+                            src={cover_image}
+                            alt={`Cover image for ${title}`}
+                            class="cover-image"
+                    />
+                </figure>
+        )}
+
+        <div class="content">
+            <Content />
+        </div>
+
+        <footer class="post-footer">
+            <div class="author-bio">
+                <img
+                        src={author.avatar}
+                        alt={author.name}
+                        class="author-avatar-large"
+                />
+                <div class="author-info">
+                    <h3>Written by {author.name}</h3>
+                    <p>{author.bio}</p>
+                </div>
+            </div>
+        </footer>
+    </article>
+</BaseLayout>
+
+<style>
+    .blog-post {
+        max-width: 65rem;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    .post-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .post-header-content {
+        max-width: 48rem;
+        margin: 0 auto;
+    }
+
+    .tags {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    .tag {
+        background-color: rgba(245, 100, 32, 0.2);
+        color: rgb(245, 100, 32);
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        color: white;
+        margin-bottom: 1rem;
+    }
+
+    .description {
+        color: rgb(209, 213, 219);
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .meta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        color: rgb(209, 213, 219);
+    }
+
+    .author {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .author-avatar {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 9999px;
+    }
+
+    .cover-image-container {
+        margin: 2rem 0;
+    }
+
+    .cover-image {
+        width: 100%;
+        max-height: 24rem;
+        object-fit: cover;
+        border-radius: 0.5rem;
+    }
+
+    .content {
+        max-width: 48rem;
+        margin: 0 auto;
+        color: rgb(209, 213, 219);
+    }
+
+    .content :global(h2) {
+        color: rgb(245, 100, 32);
+        font-size: 1.875rem;
+        margin: 2rem 0 1rem;
+    }
+
+    .content :global(h3) {
+        color: white;
+        font-size: 1.5rem;
+        margin: 1.5rem 0 1rem;
+    }
+
+    .content :global(p) {
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+    }
+
+    .content :global(code) {
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.25rem;
+    }
+
+    .content :global(pre) {
+        background-color: rgba(22, 34, 42, 0.95);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+    }
+
+    .post-footer {
+        max-width: 48rem;
+        margin: 4rem auto 0;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .author-bio {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .author-avatar-large {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 9999px;
+    }
+
+    .author-info h3 {
+        color: white;
+        margin-bottom: 0.5rem;
+    }
+
+    .author-info p {
+        color: rgb(209, 213, 219);
+        font-size: 0.875rem;
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2rem;
+        }
+
+        .meta {
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+</style>

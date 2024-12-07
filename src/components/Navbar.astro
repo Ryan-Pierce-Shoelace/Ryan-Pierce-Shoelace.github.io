@@ -1,0 +1,265 @@
+---
+import {getCollection} from 'astro:content';
+
+const games = await getCollection('games');
+const posts = await getCollection('blog');
+const tutorials = await getCollection('tutorials');
+
+const sortedGames = [...games].sort((a, b) =>
+    b.data.date.getTime() - a.data.date.getTime()
+);
+
+const sortedPosts = [...posts].sort((a, b) =>
+    b.data.date.getTime() - a.data.date.getTime()
+);
+
+const sortedTutorials = [...tutorials].sort((a, b) =>
+    b.data.date.getTime() - a.data.date.getTime()
+);
+
+
+const videoTutorials = sortedTutorials.filter(tutorial => tutorial.data.type === 'video');
+const writtenTutorials = sortedTutorials.filter(tutorial => tutorial.data.type === 'written');
+---
+
+<nav class="navbar">
+    <div class="nav-content">
+        <div class="nav-brand">
+            <a href="/" class="brand-link">
+                <img src="/assets/icons/logo.svg" alt="Shoelace Studios Logo" class="brand-logo"/>
+                <span class="brand-text">Shoelace Studios</span>
+            </a>
+        </div>
+
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="nav-links">
+            <div class="dropdown">
+                <button class="dropdown-btn">Games</button>
+                <div class="dropdown-content">
+                    {sortedGames.map(game => (
+                            <a href={`/games/${game.slug}`}>{game.data.title}</a>
+                    ))}
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropdown-btn">Blog</button>
+                <div class="dropdown-content">
+                    <a href="/blog" class="section-header">All Posts</a>
+                    {sortedPosts.map(post => (
+                            <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+                    ))}
+                </div>
+            </div>
+
+            <a href="/tutorials" class="nav-link">Tutorials</a>
+
+            <a href="/about" class="nav-link">About</a>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(22, 34, 42, 0.95);
+        z-index: 1000;
+        backdrop-filter: blur(8px);
+    }
+
+    .nav-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-brand {
+        display: flex;
+        align-items: center;
+    }
+
+    .brand-link {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        text-decoration: none;
+        color: white;
+    }
+
+    .brand-logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .brand-text {
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .nav-link, .dropdown-btn {
+        color: rgb(245, 100, 32);
+        text-decoration: none;
+        font-weight: 500;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+
+    .dropdown {
+        position: relative;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(22, 34, 42, 0.95);
+        min-width: 200px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown-content a {
+        color: white;
+        padding: 0.75rem 1rem;
+        text-decoration: none;
+        display: block;
+        transition: background-color 0.2s;
+    }
+
+    .dropdown-content a:hover {
+        background: rgb(245, 100, 32);
+    }
+
+    .mobile-menu-btn {
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+    }
+
+    .mobile-menu-btn span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background: rgb(245, 100, 32);
+        transition: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+        .mobile-menu-btn {
+            display: flex;
+        }
+
+        .nav-links {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(22, 34, 42, 0.95);
+            flex-direction: column;
+            padding: 1rem;
+            align-items: flex-start;
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+
+        .dropdown {
+            width: 100%;
+        }
+
+        .dropdown-content {
+            position: static;
+            width: 100%;
+            box-shadow: none;
+        }
+    }
+
+    .dropdown-content .section-header {
+        background: rgba(245, 100, 32, 0.1);
+        font-weight: 500;
+        color: rgb(245, 100, 32);
+    }
+
+    .dropdown-section {
+        padding: 0.5rem 0;
+    }
+
+    .dropdown-section:not(:last-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .section-label {
+        display: block;
+        padding: 0.5rem 1rem;
+        color: rgb(209, 213, 219);
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    /* Update dropdown content max-height and add scrolling for long lists */
+    .dropdown-content {
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: rgb(245, 100, 32) rgba(22, 34, 42, 0.95);
+    }
+
+    .dropdown-content::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .dropdown-content::-webkit-scrollbar-track {
+        background: rgba(22, 34, 42, 0.95);
+    }
+
+    .dropdown-content::-webkit-scrollbar-thumb {
+        background-color: rgb(245, 100, 32);
+        border-radius: 3px;
+    }
+
+    @media (max-width: 768px) {
+        .dropdown-section {
+            padding-left: 1rem;
+        }
+    }
+</style>
+<script>
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    mobileMenuBtn?.addEventListener('click', () => {
+        navLinks?.classList.toggle('active');
+    });
+</script>

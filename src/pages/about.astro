@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProfileCard from '../components/ProfileCard.astro';
+import { getCollection } from 'astro:content';
+
+const teamMembers = await getCollection('team');
+const sortedTeam = [...teamMembers].sort((a, b) =>
+    (a.data.order || 99) - (b.data.order || 99)
+);
+---
+
+<BaseLayout title="About - Shoelace Studios">
+    <div class="about-container">
+        <section class="team-cards">
+            {sortedTeam.map(member => (
+                    <ProfileCard member={member} />
+            ))}
+        </section>
+    </div>
+</BaseLayout>
+
+<style>
+    .about-container {
+        max-width: 1200px;
+        margin: 100px auto 0;
+        padding: 0 20px;
+    }
+
+    .team-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    @media (max-width: 768px) {
+        .about-container {
+            margin-top: 80px;
+        }
+    }
+</style>
