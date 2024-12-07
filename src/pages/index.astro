@@ -1,18 +1,8 @@
 ---
-import Navbar from '../components/Navbar.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Shoelace Studios</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-<Navbar />
-
-<main>
+<BaseLayout title="Shoelace Studios">
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -20,28 +10,9 @@ import Navbar from '../components/Navbar.astro';
             <p>Coded with form and function</p>
         </div>
     </section>
-</main>
-</body>
-</html>
+</BaseLayout>
 
 <style>
-    :root {
-        --color-primary: #ffffff;
-        --color-accent: rgb(245, 100, 32);
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: 'Roboto', sans-serif;
-        color: var(--color-primary);
-        min-height: 100vh;
-    }
-
     .hero {
         height: 100vh;
         position: relative;

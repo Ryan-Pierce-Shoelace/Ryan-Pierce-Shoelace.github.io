@@ -1,9 +1,9 @@
 ---
-import GamePage from '../../layouts/GamePost.astro';
+import BlogPost from '../../layouts/BlogPost.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-    const games = await getCollection('games');
+    const games = await getCollection('blog');
     return games.map(entry => ({
         params: { slug: entry.slug },
         props: { entry },
@@ -13,4 +13,4 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 ---
 
-<GamePage entry={entry} />
+<BlogPost entry={entry} />

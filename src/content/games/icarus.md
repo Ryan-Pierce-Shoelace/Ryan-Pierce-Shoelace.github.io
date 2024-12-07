@@ -1,20 +1,37 @@
 ---
-layout: game-post
-title:  "Icarus"
-description:  "A Visually Vertical Stunning Endless Runner"
-date:   2019-04-20
-main_image: /assets/images/Icarus/main.webp
+title: "Icarus"
+description: "A Visually Vertical Stunning Endless Runner"
+date: 2019-04-20
+main_image: "/assets/images/games/icarus/main.webp"
 game_page_url: "https://shoelace.itch.io/icarus"
+status: "Released"
 gallery_images:
-  - /assets/images/Icarus/1.webp
-  - /assets/images/Icarus/2.webp
-  - /assets/images/Icarus/3.webp
-  - /assets/images/Icarus/4.webp
-  - /assets/images/Icarus/5.webp
+  - "/assets/images/games/icarus/2.webp"
+  - "/assets/images/games/icarus/3.webp"
+  - "/assets/images/games/icarus/5.webp"
 ---
+ICARUS soars beyond traditional endless runners by combining the addictive vertical progression of Doodle Jump with the breathtaking aesthetics inspired by Journey. 
+Developed over an intensive 50-hour period, this game challenges players to ascend ever higher while mastering the delicate balance between ambition and caution.
 
-ICARUS is a vertical endless runner, developed in a total of 50 hours. Drawing inspiration from Doodle Jump's mechanics and Journey's aesthetics, the game's core mechanics were developed in the first week, with subsequent focus on polish and new obstacles for the map generation system. 
+## Development Journey
 
-Fly high with the fire of Icarus. Cast your blaze and guide your kite to the heavens, or at least as close as you can get. Avoid the obstacles that pass your way and get the kite as high as you can!
+The project was split into two distinct phases: a week-long sprint to establish core mechanics, followed by meticulous polish and the implementation of a sophisticated procedural obstacle generation system.
+This approach allowed for both rapid prototyping and refined gameplay experiences.
 
-Rack up points and use them to buy different items in the shop to help you on your way; Like new skins for your kite and new effects for your flame.
+## Gameplay Elements
+
+Players guide their kite through an endless vertical ascent, wielding the power of fire to propel themselves skyward.
+Each flight becomes a unique journey through procedurally generated obstacles, requiring quick reflexes and strategic resource management.
+
+Fly high with the fire of Icarus. Cast your blaze and guide your kite to the heavens, or at least as close as you can
+get. Avoid the obstacles that pass your way and get the kite as high as you can!
+
+
+## Key Features
+
+- Procedurally generated obstacles ensuring unique playthroughs
+- Unlockable cosmetic system including kite skins and flame effects
+- Progressive difficulty scaling
+
+
+
