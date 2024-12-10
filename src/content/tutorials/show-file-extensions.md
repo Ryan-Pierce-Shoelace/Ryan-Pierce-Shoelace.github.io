@@ -19,53 +19,33 @@ and setting up software and mods much easier since it will prevent errors and co
 The image below shows a folder with four files that share a name. Without all file extensions you might
 mistakenly edit or delete the wrong file.
 
-![Screenshot description](../../../public/assets/images/tutorials/show-file-extensions/open-options-windows11.jpg)
+![A folder with four files named file](assets/images/tutorials/show-file-extensions/unknown-filetype-example.jpg)
+
+
 
 
 ## Method
 
 ### Windows 11
 
+#### Step 1
+
 Open the folder that contains your files. Then open the options 
 
-![Screenshot description](../../../public/assets/images/tutorials/show-file-extensions/visible-file-extensions.jpg)
+![The location of the options button](assets/images/tutorials/show-file-extensions/open-options-windows11.jpg)
+
+#### Step 2
+
+From the Folder Options, navigate to the view tab. Then under advanced settings uncheck "Hide extensions for known file types"
+
+![Screenshot description](assets/images/tutorials/show-file-extensions/folder-options.jpg)
 
 
+If you would like to apply this to all folders you can click on Apply to Folders. Otherwise, simply click apply and you are done.
 
-Explain what the tutorial will cover and what the reader will achieve by the end.
 
-## Prerequisites Details
+### Results
 
-Expand on the prerequisites listed in the frontmatter. Explain exactly what knowledge is needed
-and link to resources where readers can learn these prerequisites.
+If all went well you should now see the extensions for all file types. 
 
-## Step 1: Getting Started
-
-Break down the tutorial into clear, numbered steps. Each step should be focused on a single concept
-or task.
-
-### Code Example
-
-```csharp
-// Include relevant code examples
-public class TutorialExample {
-    void ExampleMethod() {
-        // Add comments explaining the code
-    }
-}
-```
-
-## Step 2: Implementation
-
-Include screenshots or diagrams where helpful:
-
-![Screenshot description](../../../public/assets/images/tutorials/tutorial-slug/step2.webp)
-
-## Common Issues
-
-List potential problems readers might encounter and their solutions.
-
-## Next Steps
-
-Suggest what readers should learn next and link to related tutorials.
-![Screenshot description](../../../public/assets/images/tutorials/show-file-extensions/visible-file-extensions.jpg)
+![Screenshot description](assets/images/tutorials/show-file-extensions/visible-file-extensions.jpg)
