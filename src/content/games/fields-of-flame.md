@@ -2,12 +2,13 @@
 title: "Fields of Flame"
 description: "No Grain, No Flame"
 date: 2025-05-11
-main_image: "/assets/images/games/fields-of-flame/main.jpg"
+main_image: "/assets/images/games/fields-of-flame/3.jpg"
 game_page_url: "https://shoelace.itch.io/fields-of-flame"
 status: "Released"
 gallery_images:
   - "/assets/images/games/fields-of-flame/1.jpg"
   - "/assets/images/games/fields-of-flame/2.jpg"
+  - "/assets/images/games/fields-of-flame/3.jpg"
 ---
 "Fields of Flame" is a top-down firefighting game where players face the daunting challenge of protecting Sunderside Valley from devastating wildfires. Set in a drought-stricken breadbasket turned tinderbox, you are the sole member of the local Fire Department tasked with controlling blazes that threaten to consume everything in their path. With dynamic fire propagation systems and strategic hose placement mechanics, players must make quick decisions to save as much of the golden wheat fields and structures as possible before they're reduced to ash.
 
