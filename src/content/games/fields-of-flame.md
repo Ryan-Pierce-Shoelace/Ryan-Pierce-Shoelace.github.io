@@ -22,7 +22,7 @@ Created by two people within a tight 48-hour timeframe for TOJam 2025. The chall
 In this tactical firefighting simulation, players navigate through increasingly hazardous scenarios where every second counts. As the sole firefighter of Sunderside Valley, you must strategically position yourself to access various hose locations throughout each level. The game's signature dynamic fire system creates unpredictable blazes that spread faster through valuable terrain, forcing players to make difficult choices about what can be saved and what must be sacrificed.
 ## Theme Interpretation
 
-nterprets its theme through its core risk-reward mechanic: the more wheat fields and structures present on a map, the higher your potential score; but this abundance becomes your greatest threat. Each valuable tile acts as fuel that accelerates fire spread, creating an escalating challenge where prosperity becomes peril.
+Interprets its theme through its core risk-reward mechanic: the more wheat fields and structures present on a map, the higher your potential score; but this abundance becomes your greatest threat. Each valuable tile acts as fuel that accelerates fire spread, creating an escalating challenge where prosperity becomes peril.
 ## Key Features
 
 - Dynamic fire propagation system that spreads based on ground tile types
@@ -40,4 +40,3 @@ The biggest lesson learned from this project was our need to build out and stand
 
 While these additional mechanics wouldn't have been technically difficult to implement, perfecting their game feel was beyond the scope of the jam's tight timeline. We consider the project a successful experiment with engaging mechanics that warrant further development and refinement in the future.
 
-[Source Code Available on GitHub](https://github.com/Ryan-Pierce-Shoelace/The-List--GameOff-2024-Secrets)
