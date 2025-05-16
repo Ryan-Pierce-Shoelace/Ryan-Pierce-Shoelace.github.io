@@ -2,7 +2,7 @@
 title: "Fields of Flame"
 description: "No Grain, No Flame"
 date: 2025-05-11
-main_image: "/assets/images/games/fields-of-flame/3.jpg"
+main_image: "/assets/images/games/fields-of-flame/main.jpg"
 game_page_url: "https://shoelace.itch.io/fields-of-flame"
 status: "Released"
 gallery_images:
