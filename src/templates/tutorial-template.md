@@ -49,6 +49,9 @@ public class TutorialExample {
 Include screenshots or diagrams where helpful:
 
 ![Screenshot description](/assets/images/tutorials/tutorial-slug/step2.webp)
+<!-- NOTE: there is ain included folder in the tutorials content directory. -->
+<!-- Images can be placed in there to visually preview them while you write. -->
+<!-- Files must be saved in the public assets folder before compile -->
 
 ## Common Issues
 
