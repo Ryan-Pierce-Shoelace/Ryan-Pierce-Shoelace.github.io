@@ -3,8 +3,8 @@ title: "Claw Game"
 description: "Fishing in space"
 date: 2025-12-09
 main_image: "/assets/images/games/claw-game/main.webp"
-game_page_url: "https://shoelace.itch.io/factual-front"
-status: "Released"
+game_page_url: "https://shoelace.itch.io/"
+status: "Prototype"
 gallery_images:
   - "/assets/images/games/claw-game/1.webp"
   - "/assets/images/games/claw-game/2.webp"
