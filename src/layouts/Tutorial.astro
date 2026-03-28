@@ -41,11 +41,6 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
                     <div class="left-meta">
                         {author && (
                                 <div class="author-info">
-                                    <img
-                                            src={author.data.avatar}
-                                            alt={author.data.name}
-                                            class="author-avatar"
-                                    />
                                     <div class="author-details">
                                         <span class="author-name">{author.data.name}</span>
                                         <time datetime={date.toISOString()} class="publish-date">{formattedDate}</time>
