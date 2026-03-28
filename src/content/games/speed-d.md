@@ -11,7 +11,7 @@ gallery_images:
 ---
 SPEDD reinvents the dating sim genre by injecting it with adrenaline-pumping time pressure and tongue-in-cheek humor. Developed by a tight-knit team of three over three months, this mobile game streamlines romance into a rapid-fire challenge of wit and timing.
 
-# Development Journey
+## Development Journey
 
 The project's development was strategically divided, with the core programming completed in an intensive three-week sprint.
 This allowed for two months of creative refinement, focusing on witty writing, character development, and polishing the game's distinctive personality.

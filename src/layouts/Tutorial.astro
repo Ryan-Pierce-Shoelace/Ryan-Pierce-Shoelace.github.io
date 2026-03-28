@@ -1,18 +1,18 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import type {CollectionEntry} from 'astro:content';
-import {getCollection, getEntry} from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
 
 interface Props {
     entry: CollectionEntry<'tutorials'>;
 }
 
-const {entry} = Astro.props;
+const { entry } = Astro.props;
 const {
     title,
     description,
     date,
-    author: authorSlug,
+    author: authorRef,
     type,
     youtube_id,
     difficulty,
@@ -20,8 +20,8 @@ const {
     estimated_time
 } = entry.data;
 
-const author = await getEntry('team', authorSlug);
-const {Content} = await entry.render();
+const author = await getEntry(authorRef);
+const { Content } = await entry.render();
 
 const formattedDate = new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -32,7 +32,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
 
 <BaseLayout title={`${title} - Shoelace Studios Tutorials`}>
     <article class="tutorial">
-        <div class="content-wrapper pt-16">
+        <div class="content-wrapper">
             <header class="tutorial-header">
                 <h1>{title}</h1>
                 <p class="description">{description}</p>
@@ -225,7 +225,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
     }
 
     .prerequisites h2 {
-        color: rgb(245, 100, 32);
+        color: var(--color-accent);
         font-size: 1.25rem;
         margin-bottom: 1rem;
     }
@@ -258,7 +258,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
     }
 
     .content :global(h2) {
-        color: rgb(245, 100, 32);
+        color: var(--color-accent);
         font-size: 1.875rem;
         margin: 2rem 0 1rem;
     }
@@ -289,7 +289,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
     }
 
     .content :global(a) {
-        color: rgb(245, 100, 32);
+        color: var(--color-accent);
         text-decoration: none;
         transition: color 0.2s ease;
     }

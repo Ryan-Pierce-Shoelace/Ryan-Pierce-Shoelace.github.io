@@ -6,7 +6,7 @@ description: "A short, compelling description of your game"
 date: 2024-02-20
 main_image: "/assets/images/games/your-game-slug/main.webp"
 game_page_url: "https://shoelace.itch.io/your-game"
-status: "Released"  # "Released", "In Development", "Coming Soon"
+status: "Released"  # "Released", "In Development", "Coming Soon", "Prototype"
 gallery_images:
   - "/assets/images/games/your-game-slug/1.webp"
   - "/assets/images/games/your-game-slug/2.webp"

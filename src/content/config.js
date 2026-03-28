@@ -1,4 +1,4 @@
-import { defineCollection, reference, z } from 'astro:content';
+import {defineCollection, reference, z} from 'astro:content';
 
 const team = defineCollection({
     type: 'content',
@@ -38,7 +38,7 @@ const blog = defineCollection({
         title: z.string(),
         description: z.string(),
         date: z.date(),
-        author: reference('team'),  // References team collection
+        author: reference('team'),
         cover_image: z.string().optional(),
         tags: z.array(z.string()).optional()
     })
@@ -51,8 +51,8 @@ const games = defineCollection({
         description: z.string(),
         date: z.date(),
         main_image: z.string(),
-        game_page_url: z.string(),
-        status: z.string(),
+        game_page_url: z.string().optional(),
+        status: z.enum(['Released', 'In Development', 'Coming Soon', 'Prototype']),
         gallery_images: z.array(z.string()).optional()
     })
 });
@@ -73,4 +73,4 @@ const tutorials = defineCollection({
     })
 });
 
-export const collections = { team, blog, games, tutorials };
+export const collections = {team, blog, games, tutorials};

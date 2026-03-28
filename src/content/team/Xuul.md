@@ -10,7 +10,7 @@ links:
   itchio: "https://xuul.itch.io/"
   youtube: "https://www.youtube.com/c/xuul" 
 experience:
-  - title: "Developer / Business Manager"
+  - title: "Co-Founder"
     company: "Shoelace Studios"
     location: "Canada"
     period: "January 2022 - Present"
@@ -26,5 +26,5 @@ skills:
   - "Unity Engine"
   - "Version Control (Git)"
   - "Photoshop, Premier Pro"
-  - "`Business Stuff`"
+  - "'Business Stuff'"
 ---

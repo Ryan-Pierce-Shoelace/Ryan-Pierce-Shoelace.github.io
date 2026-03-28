@@ -9,7 +9,7 @@ const sortedTeam = [...teamMembers].sort((a, b) =>
 );
 ---
 
-<BaseLayout title="About - Shoelace Studios">
+<BaseLayout title="About - Shoelace Studios" description="Meet the team behind Shoelace Studios">
     <div class="about-container">
         <section class="team-cards">
             {sortedTeam.map(member => (
@@ -21,20 +21,21 @@ const sortedTeam = [...teamMembers].sort((a, b) =>
 
 <style>
     .about-container {
-        max-width: 1200px;
-        margin: 100px auto 0;
-        padding: 0 20px;
+        max-width: 85rem;
+        margin: 6rem auto 0;
+        padding: 0 1rem;
     }
 
     .team-cards {
         display: flex;
         flex-direction: column;
         gap: 2rem;
+        padding-bottom: 4rem;
     }
 
     @media (max-width: 768px) {
         .about-container {
-            margin-top: 80px;
+            margin-top: 5rem;
         }
     }
 </style>

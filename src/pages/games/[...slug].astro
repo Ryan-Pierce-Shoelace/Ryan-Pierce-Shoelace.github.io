@@ -1,16 +1,16 @@
 ---
-import GamePage from '../../layouts/GamePost.astro';
-import { getCollection } from 'astro:content';
+import GamePost from '../../layouts/GamePost.astro';
+import {getCollection} from 'astro:content';
 
 export async function getStaticPaths() {
     const games = await getCollection('games');
     return games.map(entry => ({
-        params: { slug: entry.slug },
-        props: { entry },
+        params: {slug: entry.id.replace(/\.[^.]+$/, '')},
+        props: {entry},
     }));
 }
 
-const { entry } = Astro.props;
+const {entry} = Astro.props;
 ---
 
-<GamePage entry={entry} />
+<GamePost entry={entry}/>

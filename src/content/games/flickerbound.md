@@ -1,12 +1,10 @@
 ---
-# Save actual games to: /src/content/games/your-game-slug.md
-
 title: "Flickerbound"
 description: "A surreal endless runner"
 date: 2024-08-20
 main_image: "/assets/images/games/flickerbound/1.jpg"
 game_page_url: "https://shoelace.itch.io/flickerbound"
-status: "Released"  # "Released", "In Development", "Coming Soon"
+status: "Released" 
 gallery_images:
   - "/assets/images/games/flickerbound/2.jpg"
   - "/assets/images/games/flickerbound/3.jpg"

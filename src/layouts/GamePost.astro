@@ -1,15 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import {Image} from 'astro:assets';
-import type {CollectionEntry} from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 
 interface Props {
     entry: CollectionEntry<'games'>;
 }
 
-const {entry} = Astro.props;
-const {title, description, date, main_image, game_page_url, status, gallery_images} = entry.data;
-const {Content} = await entry.render();
+const { entry } = Astro.props;
+const { title, description, date, main_image, game_page_url, status, gallery_images } = entry.data;
+const { Content } = await entry.render();
 
 const formattedDate = new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -17,18 +16,14 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
     day: 'numeric'
 });
 
-const gameSlug = entry.slug || title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+const gameSlug = entry.slug.replace(/\.[^.]+$/, '') || title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
 const getImagePath = (path: string) => {
     if (!path) return '';
     const cleanPath = path.startsWith('/') ? path.slice(1) : path;
     return cleanPath.startsWith('assets/') ? `/${cleanPath}` : `/assets/images/games/${gameSlug}/${path}`;
 };
-
-const getImageExtension = (path: string) => {
-    const extension = path.split('.').pop()?.toLowerCase() || 'webp';
-    return ['webp', 'jpg', 'png', 'gif'].includes(extension) ? extension : 'webp';
-};
+---
 ---
 
 <BaseLayout title={`${title} - Shoelace Studios`}>
@@ -55,13 +50,11 @@ const getImageExtension = (path: string) => {
         <div class="content-wrapper">
             <section class="game-info">
                 <figure class="main-image-container">
-                    <Image
+                    <img
                             src={getImagePath(main_image)}
                             alt={`${title} main image`}
-                            width={1200}
-                            height={675}
-                            format={getImageExtension(main_image)}
-                            quality={80}
+                            width="1200"
+                            height="675"
                             loading="lazy"
                             class="main-image"
                     />
@@ -77,13 +70,11 @@ const getImageExtension = (path: string) => {
                         <div class="gallery-grid">
                             {gallery_images.map((image, index) => (
                                     <figure class="gallery-item">
-                                        <Image
+                                        <img
                                                 src={getImagePath(image)}
                                                 alt={`${title} screenshot ${index + 1}`}
-                                                width={800}
-                                                height={450}
-                                                format={getImageExtension(image)}
-                                                quality={80}
+                                                width="800"
+                                                height="450"
                                                 loading={index > 0 ? "lazy" : "eager"}
                                                 class="gallery-image"
                                         />
@@ -99,21 +90,6 @@ const getImageExtension = (path: string) => {
 <style>
     .game-page {
         margin: 0 auto;
-    }
-
-    .main-image {
-        width: 100%;
-        max-width: 48rem;
-        height: auto;
-        display: block;
-        border-radius: 0.5rem;
-    }
-
-    .gallery-image {
-        width: 100%;
-        height: auto;
-        border-radius: 0.5rem;
-        transition: transform 0.3s ease;
     }
 
     .hero-section {
@@ -178,15 +154,26 @@ const getImageExtension = (path: string) => {
         color: white;
     }
 
+    .status[data-status="coming soon"] {
+        background-color: rgb(59, 130, 246);
+        color: white;
+    }
+
+    .status[data-status="prototype"] {
+        background-color: rgb(109, 40, 217);
+        color: white;
+    }
+
     .play-button {
         display: inline-block;
-        background-color: rgb(245, 100, 32);
+        background-color: var(--color-accent);
         color: white;
         padding: 0.75rem 2rem;
         border-radius: 0.5rem;
         font-weight: 600;
         font-size: 1.125rem;
-        transition: all 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        text-decoration: none;
     }
 
     .play-button:hover {
@@ -214,13 +201,14 @@ const getImageExtension = (path: string) => {
     .main-image {
         width: 100%;
         max-width: 48rem;
+        height: auto;
         margin: 0 auto;
         display: block;
         border-radius: 0.5rem;
     }
 
     .content :global(h2) {
-        color: rgb(245, 100, 32);
+        color: var(--color-accent);
         font-size: 1.5rem;
         font-weight: 700;
         margin: 2rem 0 1rem;
@@ -236,14 +224,9 @@ const getImageExtension = (path: string) => {
         color: rgb(209, 213, 219);
         margin-bottom: 1rem;
         line-height: 1.6;
-        margin-left: 1rem;
-    }
-
-    .content :global(ul > li) {
-        position: relative;
         padding-left: 1.5rem;
+        list-style: disc;
     }
-
 
     .gallery-section {
         margin-top: 3rem;
@@ -258,7 +241,7 @@ const getImageExtension = (path: string) => {
 
     .gallery-grid {
         display: grid;
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: 1fr;
         gap: 1rem;
     }
 
@@ -268,6 +251,7 @@ const getImageExtension = (path: string) => {
 
     .gallery-image {
         width: 100%;
+        height: auto;
         border-radius: 0.5rem;
         transition: transform 0.3s ease;
     }
@@ -275,7 +259,6 @@ const getImageExtension = (path: string) => {
     .gallery-image:hover {
         transform: scale(1.02);
     }
-
 
     @media (min-width: 768px) {
         .gallery-grid {

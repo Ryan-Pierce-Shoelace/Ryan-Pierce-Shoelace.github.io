@@ -1,6 +1,4 @@
 ---
-# Save actual tutorials to: /src/content/tutorials/your-tutorials-slug.md
-
 title: "Star Wars: Knights of the Old Republic - Widescreen Mod Tutorial"
 description: "Learn how to get Star Wars: Knights of the Old Republic running in a widescreen resolution with enhanced visuals and UI improvements."
 date: 2023-12-06
@@ -12,10 +10,10 @@ difficulty: "Beginner"  # "Beginner", "Intermediate", or "Advanced"
 prerequisites:  # Optional, remove if none
   - "Have the Steam version of KOTOR installed"
   - "Disable any display scaling settings in Windows"
-estimated_time: 15  # Time in minutes
+estimated_time: 15
 ---
 
-clStar Wars: Knights of the Old Republic - Widescreen Mod Tutorial
+Star Wars: Knights of the Old Republic - Widescreen Mod Tutorial
 ## Overview
 In this tutorial, we'll walk through the process of getting Star Wars: Knights of the Old Republic (KOTOR) running in a widescreen resolution, along with installing various mods to enhance the UI and visual experience.
 

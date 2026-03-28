@@ -33,7 +33,13 @@
           "type": "string"
         },
         "status": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "Released",
+            "In Development",
+            "Coming Soon",
+            "Prototype"
+          ]
         },
         "gallery_images": {
           "type": "array",
@@ -50,7 +56,6 @@
         "description",
         "date",
         "main_image",
-        "game_page_url",
         "status"
       ],
       "additionalProperties": false

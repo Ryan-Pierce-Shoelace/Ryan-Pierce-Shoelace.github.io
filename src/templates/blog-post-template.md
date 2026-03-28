@@ -4,7 +4,7 @@
 title: "Your Blog Post Title"
 description: "A compelling description of your post that will appear in previews and at the top of the article"
 date: 2024-02-20
-author: "ryan-pierce"  # This should match the team member file name without .md
+author: "ryan-pierce"  # Must match filename in /src/content/team/ without .md
 cover_image: "/assets/images/blog/post-slug/cover.webp"  # Optional
 tags:  # Optional
   - "Game Development"
